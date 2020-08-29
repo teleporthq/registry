@@ -1,13 +1,15 @@
-// @ts-ignore
-import sander from "sander";
 import path from "path";
-import rollup from "rollup";
+import { mkdirSync, rmdirSync } from "fs";
+import { ParsedUrlQueryInput } from "querystring";
+
+import { rollup } from "rollup";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import replace from "rollup-plugin-replace";
 import babel from "@rollup/plugin-babel";
 // @ts-ignore
 import importMap from "rollup-plugin-esm-import-to-url";
+
 import { makeLegalIdentifier } from "../utils/makeLegalIdentifier";
 import {
   info,
@@ -19,15 +21,14 @@ import {
 } from "./utils";
 import { tmpdir } from "../config";
 import { PackageJSON } from "../types";
-import { ParsedUrlQueryInput } from "querystring";
+
+process.send("ready");
 
 process.on("message", (message) => {
   if (message.type === "start") {
     createBundle(message.params);
   }
 });
-
-process.send("ready");
 
 const createBundle = async ({
   hash,
@@ -46,20 +47,23 @@ const createBundle = async ({
   const cwd = `${dir}/package`;
 
   try {
-    await sander.mkdir(dir);
+    mkdirSync(dir);
     await fetchAndExtract(pkg, version, dir);
     await sanitizePkg(cwd);
-    await installDependencies(cwd);
     await installBabelRuntime(cwd);
+    await installDependencies(cwd);
 
     const code = await bundle(cwd, deep, query);
 
     process.send({
       type: "result",
-      // code: result.code,
       code,
     });
   } catch (err) {
+    if (process.env.NODE_ENV === "production") {
+      rmdirSync(dir, { recursive: true });
+    }
+
     process.send({
       type: "error",
       message: err.message,
@@ -67,11 +71,15 @@ const createBundle = async ({
     });
   }
 
-  sander.rimraf(dir);
+  rmdirSync(dir, { recursive: true });
 };
 
-const bundle = (cwd: string, deep: string, query: ParsedUrlQueryInput) => {
-  const pkg = require(`${cwd}/package.json`);
+const bundle = async (
+  cwd: string,
+  deep: string,
+  query: ParsedUrlQueryInput
+) => {
+  const pkg = await import(`${cwd}/package.json`);
   const moduleName: string = ((query.name ||
     makeLegalIdentifier(pkg.name)) as unknown) as string;
 
@@ -96,7 +104,7 @@ const bundleWithRollup = async (
   moduleEntry: string,
   name: string
 ) => {
-  const bundle = await rollup.rollup({
+  const bundle = await rollup({
     input: path.resolve(cwd, moduleEntry),
     plugins: [
       replace({
@@ -118,7 +126,6 @@ const bundleWithRollup = async (
       }),
       nodeResolve({
         mainFields: ["browser", "jsnext:main", "module", "main"],
-        resolveOnly: [/^@babel\/.*$/],
       }),
       importMap({
         imports: {

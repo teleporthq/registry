@@ -1,21 +1,22 @@
-// @ts-ignore
-import sander from "sander";
-import { fork } from "child_process";
-import semver from "semver";
 import zlib from "zlib";
-import fetch from "node-fetch";
-import findVersion from "./utils/findVersion";
-import cache from "./cache";
 import etag from "etag";
 import sha1 from "sha1";
+import { join } from "path";
+import semver from "semver";
+import fetch from "node-fetch";
+import { readFileSync } from "fs";
+import { fork } from "child_process";
+import { ParsedUrlQueryInput } from "querystring";
+import { NextFunction, Request, Response } from "express";
+
+import cache from "./cache";
 import logger from "./logger";
+import findVersion from "./utils/findVersion";
 import { sendBadRequest, sendError } from "./utils/responses";
 import { root, registry, additionalBundleResHeaders } from "./config";
-import { NextFunction, Request, Response } from "express";
-import { ParsedUrlQueryInput } from "querystring";
 import { PackageJSON, PackageVersions, ChildProcessType } from "./types";
 
-export const stringify = (query: ParsedUrlQueryInput) => {
+export const stringify = (query: ParsedUrlQueryInput): string => {
   const str = Object.keys(query)
     .sort()
     .map((key) => `${key}=${query[key]}`)
@@ -27,9 +28,9 @@ const servePackage = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<unknown> => {
   if (req.method !== "GET") return next();
-
+  // @ts-ignore
   const match = /^\/(?:@([^\/]+)\/)?([^@\/]+)(?:@(.+?))?(?:\/(.+?))?(?:\?(.+))?$/.exec(
     req.url
   );
@@ -89,13 +90,12 @@ const servePackage = async (
     }
 
     // If everything is good so far, then fetch the package and do the bundling part
-
     try {
       const zipped = await fetchBundle(packageRequested, tag, deep, query);
 
       if (!zipped) {
-        logger.info(`[${qualified}] Failed is fetching the zip`);
-        return sendError(res, `Failed in fetching the zip for ${qualified}`);
+        logger.info(`[${qualified}] Failed is fetching the bundle`);
+        return sendError(res, `Failed in fetching the bundle ${qualified}`);
       }
 
       logger.info(`[${qualified}] serving ${zipped.length} bytes`);
@@ -117,17 +117,14 @@ const servePackage = async (
       res.end(zipped);
     } catch (err) {
       logger.error(`[${qualified}] ${err.message}`, err.stack);
-      const page = sander
-        .readFileSync(`${root}/server/templates/500.html`, {
-          encoding: "utf-8",
-        })
-        .replace("__ERROR__", err.message);
+      const page = readFileSync(`${root}/server/templates/500.html`, {
+        encoding: "utf-8",
+      }).replace("__ERROR__", err.message);
 
       sendError(res, page);
     }
   } catch (e) {
-    console.log(e);
-    logger.error(`[${qualified}] Failed in fetching packagr from npm`);
+    logger.error(`[${qualified}] Failed in fetching package from npm`);
     return sendBadRequest(
       res,
       `Failed in fetching package from the npm ${qualified}`
@@ -137,7 +134,7 @@ const servePackage = async (
 
 const inProgress: Record<string, unknown> = {};
 
-const fetchBundle = (
+const fetchBundle = async (
   pkg: PackageJSON,
   version: PackageVersions,
   deep: string,
@@ -151,9 +148,11 @@ const fetchBundle = (
 
   hash = sha1(hash);
 
-  if (cache.has(hash)) {
+  const [result, file] = await cache.has(hash);
+
+  if (result) {
     logger.info(`[${pkg.name}] is cached`);
-    return Promise.resolve(cache.get(hash)) as Promise<Buffer>;
+    return Promise.resolve(cache.get(file));
   }
 
   if (inProgress[hash]) {
@@ -161,22 +160,22 @@ const fetchBundle = (
   } else {
     logger.info(`[${pkg.name}] is not cached`);
 
-    // inProgress[hash] = createBundle(hash, pkg, version, deep, query)
-    //   .then(
-    //     (result: string) => {
-    //       const zipped = zlib.gzipSync(result);
-    //       cache.set(hash, zipped);
-    //       return zipped;
-    //     },
-    //     (err) => {
-    //       inProgress[hash] = null;
-    //       throw err;
-    //     }
-    //   )
-    //   .then((zipped) => {
-    //     inProgress[hash] = null;
-    //     return zipped;
-    //   });
+    inProgress[hash] = createBundle(hash, pkg, version, deep, query)
+      .then(
+        (result: string) => {
+          const zipped = zlib.gzipSync(result);
+          cache.set(hash, result);
+          return zipped;
+        },
+        (err) => {
+          inProgress[hash] = null;
+          throw err;
+        }
+      )
+      .then((zipped) => {
+        inProgress[hash] = null;
+        return zipped;
+      });
   }
 
   return inProgress[hash] as Promise<Buffer>;
@@ -190,7 +189,14 @@ const createBundle = (
   query: ParsedUrlQueryInput
 ) => {
   return new Promise((fulfil, reject) => {
-    const child = fork("server/child-processes/create-bundle.ts");
+    const child = fork(join(__dirname, "child-processes", "create-bundle"), [
+      "-r",
+      "ts-node/register",
+    ]);
+
+    if (!child) {
+      reject();
+    }
 
     child.on("message", (message: ChildProcessType) => {
       if (typeof message === "string" && message === "ready") {
@@ -206,7 +212,6 @@ const createBundle = (
         } else if (message.type === "error") {
           const error = new Error(message.message);
           error.stack = message.stack;
-
           reject(error);
           child.kill();
         } else if (message.type === "result") {

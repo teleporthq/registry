@@ -5,4 +5,4 @@ import { tmpdir } from "./config";
 minilog.enable();
 minilog.pipe(fs.createWriteStream(`${tmpdir}/log`));
 
-export default minilog("packd");
+export default minilog("teleport-packer");

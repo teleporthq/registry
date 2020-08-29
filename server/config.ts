@@ -1,15 +1,21 @@
 import path from "path";
-// @ts-ignore
-import sander from "sander";
+import { mkdirSync, rmdirSync } from "fs";
 
-const root = path.resolve(__dirname);
-let tmpdir = process.env.NOW ? `/tmp` : `${exports.root}/.tmp`;
+export const GCLOUD_CONSTANTS = {
+  APPLICATION_TYPE: "application/javascript",
+  CACHE_CONTROL: "max-age=3600",
+};
+
+const root = path.resolve(__dirname, "..");
+
+let tmpdir = process.env.NODE_ENV === "production" ? `/tmp` : `${root}/.tmp`;
+const bucketName = "bundled-packages-test-dev";
 const registry = "https://registry.npmjs.org";
 
-if (!process.env.NOW) {
+if (process.env.NODE_ENV !== "production") {
   try {
-    sander.rimrafSync(exports.tmpdir);
-    sander.mkdirSync(exports.tmpdir);
+    rmdirSync(exports.tmpdir);
+    mkdirSync(exports.tmpdir);
   } catch (err) {
     // already exists
   }
@@ -24,7 +30,7 @@ let additionalBundleResHeaders: Record<string, string> = {
 
 let cacheExpiration = 0;
 
-if ((process.env.NODE_ENV = "production")) {
+if (process.env.NODE_ENV === "production") {
   tmpdir = "/tmp";
   cacheExpiration = 60 * 60 * 24 * 365;
   npmInstallEnvVars = ["npm_config_cache=/tmp"];
@@ -34,7 +40,7 @@ if ((process.env.NODE_ENV = "production")) {
     "X-Content-Type-Options": "nosniff",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Request-Method": "GET",
-    "X-Powered-By": "github.com/rich-harris/packd",
+    // "X-Powered-By": "github.com/rich-harris/packd",
     "Strict-Transport-Security": `max-age=${cacheExpiration}; includeSubDomains; preload`,
   };
 }
@@ -45,6 +51,7 @@ export {
   debugEndpoints,
   additionalBundleResHeaders,
   npmInstallEnvVars,
+  bucketName,
   registry,
   root,
 };

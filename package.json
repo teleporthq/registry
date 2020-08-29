@@ -4,14 +4,14 @@
   "description": "A Experimental bundler for serving packages from npm",
   "scripts": {
     "start": "node server",
-    "dev": "ts-node-dev ./server/index.ts",
+    "dev": "ts-node ./server/index.ts",
     "build": "tsc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JayaKrishnaNamburu/teleport-registry-packer.git"
   },
-  "author": "Rich Harris",
+  "author": "Jaya Krishna Namburu <namburu1995@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.11.4",
@@ -35,7 +35,6 @@
     "rollup": "^2.26.6",
     "rollup-plugin-esm-import-to-url": "^2.1.0",
     "rollup-plugin-replace": "^2.2.0",
-    "sander": "^0.6.0",
     "semver": "^5.3.0",
     "sha1": "^1.1.1",
     "tar": "^4.4.8",
@@ -62,7 +61,7 @@
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "ts-node-dev": "^1.0.0-pre.61",
+    "ts-node": "^9.0.0",
     "typescript": "^3.9.7"
   }
 }

@@ -1,15 +1,14 @@
-// @ts-ignore
-import sander from "sander";
+import { createWriteStream, statSync, writeFileSync } from "fs";
 import request from "request";
 import child_process from "child_process";
 import tar from "tar";
 import { npmInstallEnvVars, root } from "../config";
 import { PackageJSON } from "../types";
 
-export const sanitizePkg = (cwd: string) => {
-  const pkg = require(`${cwd}/package.json`);
+export const sanitizePkg = async (cwd: string): Promise<void> => {
+  const pkg = await import(`${cwd}/package.json`).then((data) => data.default);
 
-  pkg.peerDependencies = Object.keys(pkg.peerDependencies).reduce(
+  pkg.peerDependencies = Object.keys(pkg.peerDependencies || {}).reduce(
     (acc, item) => {
       // These packages get's bundled multiple times and creats noise in running
       // So when defined in peer we can ignore and rewritten to latest version of skypack
@@ -26,17 +25,17 @@ export const sanitizePkg = (cwd: string) => {
   );
 
   pkg.scripts = {};
-  return sander.writeFile(
-    `${cwd}/package.json`,
-    JSON.stringify(pkg, null, "  ")
-  );
+  return writeFileSync(`${cwd}/package.json`, JSON.stringify(pkg, null, "  "));
 };
 
-export const fetchAndExtract = (pkg: unknown, version: string, dir: string) => {
+export const fetchAndExtract = (
+  pkg: PackageJSON,
+  version: string,
+  dir: string
+): Promise<unknown> => {
   // @ts-ignore
   const tarUrl = pkg.versions[version].dist.tarball;
 
-  // @ts-ignore
   info(`[${pkg.name}] fetching ${tarUrl}`);
 
   return new Promise((fulfil, reject) => {
@@ -49,9 +48,7 @@ export const fetchAndExtract = (pkg: unknown, version: string, dir: string) => {
 
     const input = request(tarUrl);
 
-    // don't like going via the filesystem, but piping into targz
-    // was failing for some weird reason
-    const intermediate = sander.createWriteStream(`${dir}/package.tgz`);
+    const intermediate = createWriteStream(`${dir}/package.tgz`);
 
     input.pipe(intermediate);
 
@@ -59,7 +56,6 @@ export const fetchAndExtract = (pkg: unknown, version: string, dir: string) => {
       clearTimeout(timeout);
 
       if (!timedout) {
-        // @ts-ignore
         info(`[${pkg.name}] extracting to ${dir}/package`);
 
         tar
@@ -73,7 +69,11 @@ export const fetchAndExtract = (pkg: unknown, version: string, dir: string) => {
   });
 };
 
-export const exec = (cmd: string, cwd: string, pkg: PackageJSON) => {
+export const exec = (
+  cmd: string,
+  cwd: string,
+  pkg: PackageJSON
+): Promise<void> => {
   return new Promise((fulfil, reject) => {
     child_process.exec(cmd, { cwd }, (err, stdout, stderr) => {
       if (err) {
@@ -93,16 +93,16 @@ export const exec = (cmd: string, cwd: string, pkg: PackageJSON) => {
   });
 };
 
-export const info = (message: string) => {
+export const info = (message: string): void => {
   process.send({
     type: "info",
     message,
   });
 };
 
-export const findEntry = (file: string) => {
+export const findEntry = (file: string): string => {
   try {
-    const stats = sander.statSync(file);
+    const stats = statSync(file);
     if (stats.isDirectory()) return `${file}/index.js`;
     return file;
   } catch (err) {
@@ -110,8 +110,8 @@ export const findEntry = (file: string) => {
   }
 };
 
-export const installDependencies = (cwd: string): Promise<unknown> => {
-  const pkg = require(`${cwd}/package.json`);
+export const installDependencies = async (cwd: string): Promise<unknown> => {
+  const pkg = await import(`${cwd}/package.json`).then((data) => data.default);
 
   const envVariables = npmInstallEnvVars.join(" ");
   const installCommand = `${envVariables} ${root}/node_modules/.bin/npm install --production`;
@@ -135,8 +135,8 @@ export const installDependencies = (cwd: string): Promise<unknown> => {
   });
 };
 
-export const installBabelRuntime = (cwd: string): Promise<unknown> => {
-  const pkg = require(`${cwd}/package.json`);
+export const installBabelRuntime = async (cwd: string): Promise<unknown> => {
+  const pkg = await import(`${cwd}/package.json`).then((data) => data.default);
   const envVariables = npmInstallEnvVars.join(" ");
 
   // Fetch the babel runtime value from the package.json
