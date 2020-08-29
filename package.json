@@ -36,6 +36,7 @@
     "rollup-plugin-esm-import-to-url": "^2.1.0",
     "rollup-plugin-replace": "^2.2.0",
     "semver": "^5.3.0",
+    "serve-favicon": "^2.5.0",
     "sha1": "^1.1.1",
     "tar": "^4.4.8",
     "terser": "^3.14.1"
@@ -52,6 +53,7 @@
     "@types/node-fetch": "^2.5.7",
     "@types/request": "^2.48.5",
     "@types/semver": "^7.3.3",
+    "@types/serve-favicon": "^2.5.0",
     "@types/sha1": "^1.1.2",
     "@types/tar": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "^3.9.1",

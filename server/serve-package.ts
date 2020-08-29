@@ -11,6 +11,7 @@ import { NextFunction, Request, Response } from "express";
 
 import cache from "./cache";
 import logger from "./logger";
+import { getBundleName } from "./utils/helper";
 import findVersion from "./utils/findVersion";
 import { sendBadRequest, sendError } from "./utils/responses";
 import { root, registry, additionalBundleResHeaders } from "./config";
@@ -148,7 +149,18 @@ const fetchBundle = async (
 
   hash = sha1(hash);
 
-  const [result, file] = await cache.has(hash);
+  const bundleName = getBundleName(
+    hash,
+    (pkg.name as unknown) as string,
+    version
+  );
+
+  const [result, file] = await cache.has(
+    bundleName,
+    (pkg.name as unknown) as string,
+    version,
+    "npm"
+  );
 
   if (result) {
     logger.info(`[${pkg.name}] is cached`);
@@ -164,7 +176,13 @@ const fetchBundle = async (
       .then(
         (result: string) => {
           const zipped = zlib.gzipSync(result);
-          cache.set(hash, result);
+          cache.set(
+            bundleName,
+            result,
+            (pkg.name as unknown) as string,
+            version,
+            "npm"
+          );
           return zipped;
         },
         (err) => {

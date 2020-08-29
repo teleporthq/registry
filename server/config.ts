@@ -14,8 +14,8 @@ const registry = "https://registry.npmjs.org";
 
 if (process.env.NODE_ENV !== "production") {
   try {
-    rmdirSync(exports.tmpdir);
-    mkdirSync(exports.tmpdir);
+    rmdirSync(tmpdir);
+    mkdirSync(tmpdir);
   } catch (err) {
     // already exists
   }
