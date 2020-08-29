@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "dist",
+    "declaration": true,
+    "lib": ["es2015", "dom"],
+    "rootDir": "server",
+    "sourceMap": true,
+    "types": ["node"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    // "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "incremental": true
+  },
+  "exclude": ["node_modules", "dist", "./__tests__/**/*"]
+}
