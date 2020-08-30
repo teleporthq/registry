@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === "production") {
     "X-Content-Type-Options": "nosniff",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Request-Method": "GET",
-    // "X-Powered-By": "github.com/rich-harris/packd",
+    "X-Powered-By": "github.com/teleporthq/teleport-registry-packer",
     "Strict-Transport-Security": `max-age=${cacheExpiration}; includeSubDomains; preload`,
   };
 }
