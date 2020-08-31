@@ -108,7 +108,6 @@ const bundleWithRollup = async (
       replace({
         "process.env.NODE_ENV": JSON.stringify("production"),
       }),
-      commonjs(),
       babel({
         babelHelpers: "runtime",
         plugins: [
@@ -125,10 +124,14 @@ const bundleWithRollup = async (
       nodeResolve({
         mainFields: ["browser", "jsnext:main", "module", "main"],
       }),
+      commonjs({
+        // @ts-ignore
+        requireReturnsDefault: "preferred",
+      }),
       importMap({
         imports: {
-          react: "https://cdn.skypack.dev/react",
-          "react-dom": "https://cdn.skypack.dev/react-dom",
+          react: "https://cdn.skypack.dev/react@latest",
+          "react-dom": "https://cdn.skypack.dev/react-dom@latest",
         },
       }),
     ],
