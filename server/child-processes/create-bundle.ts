@@ -60,9 +60,7 @@ const createBundle = async ({
       code,
     });
   } catch (err) {
-    if (process.env.NODE_ENV === "production") {
-      rmdirSync(dir, { recursive: true });
-    }
+    rmdirSync(dir, { recursive: true });
 
     process.send({
       type: "error",

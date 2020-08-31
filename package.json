@@ -1,17 +1,23 @@
 {
   "name": "@teleporthq/teleport-registry-packer",
-  "version": "0.0.1",
-  "description": "A Experimental bundler for serving packages from npm",
+  "version": "0.2.0",
+  "description": "A opionated bundler for serving packages from npm",
+  "main": "dist/index.js",
   "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
     "start": "node server",
     "dev": "ts-node ./server/index.ts",
-    "build": "tsc -p tsconfig.json"
+    "clean": "rimraf dist",
+    "compile": "tsc",
+    "build": "npm run clean && npm run compile"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JayaKrishnaNamburu/teleport-registry-packer.git"
   },
-  "author": "Jaya Krishna Namburu <namburu1995@gmail.com>",
+  "author": "teleportHQ",
+  "homepage": "https://teleporthq.io/",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.11.4",
@@ -36,6 +42,7 @@
     "rollup-plugin-esm-import-to-url": "^2.1.0",
     "rollup-plugin-replace": "^2.2.0",
     "semver": "^5.3.0",
+    "serve-favicon": "^2.5.0",
     "sha1": "^1.1.1",
     "tar": "^4.4.8",
     "terser": "^3.14.1"
@@ -52,6 +59,7 @@
     "@types/node-fetch": "^2.5.7",
     "@types/request": "^2.48.5",
     "@types/semver": "^7.3.3",
+    "@types/serve-favicon": "^2.5.0",
     "@types/sha1": "^1.1.2",
     "@types/tar": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "^3.9.1",
@@ -61,6 +69,7 @@
     "eslint-config-prettier": "^6.11.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^9.0.0",
     "typescript": "^3.9.7"
   }

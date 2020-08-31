@@ -1,7 +1,8 @@
 import fs from "fs";
+import cors from "cors";
+import favicon from "serve-favicon";
 import express from "express";
 import compression from "compression";
-import cors from "cors";
 import servePackage from "./serve-package";
 import logger from "./logger";
 import { root } from "./config";
@@ -9,6 +10,7 @@ import { root } from "./config";
 const app = express();
 const port = process.env.PORT || 9000;
 
+app.use(favicon(`${root}/public/favicon.ico`));
 app.use(compression());
 app.use(cors());
 

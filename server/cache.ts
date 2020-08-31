@@ -1,6 +1,7 @@
 import { Storage, Bucket, File } from "@google-cloud/storage";
 import zlib from "zlib";
 import { bucketName, GCLOUD_CONSTANTS } from "./config";
+import { removeIllegalCharacters } from "./utils/helper";
 
 // Should we maintain a in memory cache ??
 // Is it still valid to use lru-cache for that
@@ -13,8 +14,17 @@ class Cache {
     this.bucket = storage.bucket(bucketName);
   }
 
-  async has(packageName: string): Promise<[boolean, File?]> {
-    const file = this.bucket.file(`${packageName}.js`);
+  async has(
+    packageName: string,
+    folder: string,
+    version: string,
+    identifier = "npm"
+  ): Promise<[boolean, File?]> {
+    const file = this.bucket.file(
+      `${identifier}/${removeIllegalCharacters(
+        folder
+      )}/${version}/${packageName}`
+    );
     try {
       const result = await file.exists();
       if (result[0]) {
@@ -32,8 +42,18 @@ class Cache {
     return zlib.gzipSync(cachedFile.toString("utf-8", 0, 12));
   }
 
-  async set(hash: string, bundle: string) {
-    const file = this.bucket.file(`${hash}.js`);
+  async set(
+    packageName: string,
+    bundle: string,
+    folder: string,
+    version: string,
+    identifier = "npm"
+  ) {
+    const file = this.bucket.file(
+      `${identifier}/${removeIllegalCharacters(
+        folder
+      )}/${version}/${packageName}`
+    );
     await file.save(Buffer.from(bundle), {
       metadata: {
         contentType: GCLOUD_CONSTANTS.APPLICATION_TYPE,

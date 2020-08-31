@@ -1,4 +1,4 @@
-const padRight = (str: string, num: number, char = " ") => {
+const padRight = (str: string, num: number, char = " "): string => {
   while (str.length < num) str += char;
   return str;
 };

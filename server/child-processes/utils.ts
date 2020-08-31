@@ -8,24 +8,29 @@ import { PackageJSON } from "../types";
 export const sanitizePkg = async (cwd: string): Promise<void> => {
   const pkg = await import(`${cwd}/package.json`).then((data) => data.default);
 
-  pkg.peerDependencies = Object.keys(pkg.peerDependencies || {}).reduce(
-    (acc, item) => {
-      // These packages get's bundled multiple times and creats noise in running
-      // So when defined in peer we can ignore and rewritten to latest version of skypack
-      // We have a issue to fix react and react-dom
-      if (!["react", "react-dom"].includes(item)) {
-        return (acc = {
-          ...acc,
-          [item]: pkg.peerDependencies[item],
-        });
-      }
-      return acc;
-    },
-    {}
-  );
+  pkg.peerDependencies = removeReactDependencies(pkg.peerDependencies);
+  pkg.devDependencies = removeReactDependencies(pkg.devDependencies);
+  pkg.dependencies = removeReactDependencies(pkg.dependencies);
 
   pkg.scripts = {};
   return writeFileSync(`${cwd}/package.json`, JSON.stringify(pkg, null, "  "));
+};
+
+const removeReactDependencies = (
+  deps: Record<string, string>
+): Record<string, string> => {
+  return Object.keys(deps || {}).reduce((acc, item) => {
+    // These packages get's bundled multiple times and creats noise in running
+    // So when defined in peer we can ignore and rewritten to latest version of skypack
+    // We have a issue to fix react and react-dom
+    if (!["react", "react-dom"].includes(item)) {
+      return (acc = {
+        ...acc,
+        [item]: deps[item],
+      });
+    }
+    return acc;
+  }, {});
 };
 
 export const fetchAndExtract = (
