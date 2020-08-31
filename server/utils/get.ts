@@ -1,6 +1,6 @@
 import https from "https";
 
-const get = (url: string) => {
+const get = (url: string): Promise<unknown> => {
   return new Promise((fulfil, reject) => {
     https.get(url, (response) => {
       let body = "";

@@ -31,7 +31,7 @@ const servePackage = async (
   next: NextFunction
 ): Promise<unknown> => {
   if (req.method !== "GET") return next();
-  // @ts-ignore
+  /* eslint-disable */
   const match = /^\/(?:@([^\/]+)\/)?([^@\/]+)(?:@(.+?))?(?:\/(.+?))?(?:\?(.+))?$/.exec(
     req.url
   );

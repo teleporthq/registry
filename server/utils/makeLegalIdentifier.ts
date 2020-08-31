@@ -8,7 +8,7 @@ const builtins = "Infinity NaN undefined null true false eval uneval isFinite is
 const blacklisted = Object.create(null);
 reservedWords.concat(builtins).forEach((word) => (blacklisted[word] = true));
 
-export const makeLegalIdentifier = (str: string) => {
+export const makeLegalIdentifier = (str: string): string => {
   str = str
     .replace(/-(\w)/g, (_, letter) => letter.toUpperCase())
     .replace(/[^$_a-zA-Z0-9]/g, "_");
