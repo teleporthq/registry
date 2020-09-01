@@ -3,9 +3,6 @@ import zlib from "zlib";
 import { bucketName, GCLOUD_CONSTANTS } from "./config";
 import { removeIllegalCharacters } from "./utils/helper";
 
-// Should we maintain a in memory cache ??
-// Is it still valid to use lru-cache for that
-// To save trips from gcloud
 class Cache {
   private bucket: Bucket;
 

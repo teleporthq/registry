@@ -1,6 +1,7 @@
 import path from "path";
 import { mkdirSync, rmdirSync } from "fs";
 import { ParsedUrlQueryInput } from "querystring";
+import os from "os";
 
 import { rollup } from "rollup";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
@@ -19,7 +20,6 @@ import {
   installBabelRuntime,
   installDependencies,
 } from "./utils";
-import { tmpdir } from "../config";
 import { PackageJSON } from "../types";
 
 export const createBundle = async (
@@ -29,7 +29,7 @@ export const createBundle = async (
   deep: string,
   query: ParsedUrlQueryInput
 ): Promise<string> => {
-  const dir = `${tmpdir}/${hash}`;
+  const dir = `${os.tmpdir()}/${hash}`;
   const cwd = `${dir}/package`;
 
   try {
