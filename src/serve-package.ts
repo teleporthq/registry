@@ -1,11 +1,9 @@
 import zlib from "zlib";
 import etag from "etag";
 import sha1 from "sha1";
-import { join } from "path";
 import semver from "semver";
 import fetch from "node-fetch";
 import { readFileSync } from "fs";
-import { fork } from "child_process";
 import { ParsedUrlQueryInput } from "querystring";
 import { NextFunction, Request, Response } from "express";
 
@@ -13,9 +11,10 @@ import cache from "./cache";
 import logger from "./logger";
 import { getBundleName } from "./utils/helper";
 import findVersion from "./utils/findVersion";
+import { createBundle } from "./bundler";
 import { sendBadRequest, sendError } from "./utils/responses";
 import { root, registry, additionalBundleResHeaders } from "./config";
-import { PackageJSON, PackageVersions, ChildProcessType } from "./types";
+import { PackageJSON, PackageVersions } from "./types";
 
 export const stringify = (query: ParsedUrlQueryInput): string => {
   const str = Object.keys(query)
@@ -197,48 +196,6 @@ const fetchBundle = async (
   }
 
   return inProgress[hash] as Promise<Buffer>;
-};
-
-const createBundle = (
-  hash: string,
-  pkg: PackageJSON,
-  version: PackageVersions,
-  deep: string,
-  query: ParsedUrlQueryInput
-) => {
-  return new Promise((fulfil, reject) => {
-    const child = fork(join(__dirname, "child-processes", "create-bundle"), [
-      "-r",
-      "ts-node/register",
-    ]);
-
-    if (!child) {
-      reject();
-    }
-
-    child.on("message", (message: ChildProcessType) => {
-      if (typeof message === "string" && message === "ready") {
-        child.send({
-          type: "start",
-          params: { hash, pkg, version, deep, query },
-        });
-      }
-
-      if (typeof message === "object") {
-        if (message.type === "info") {
-          logger.info(message.message);
-        } else if (message.type === "error") {
-          const error = new Error(message.message);
-          error.stack = message.stack;
-          reject(error);
-          child.kill();
-        } else if (message.type === "result") {
-          fulfil(message.code);
-          child.kill();
-        }
-      }
-    });
-  });
 };
 
 export default servePackage;

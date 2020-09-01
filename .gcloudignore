@@ -1,6 +1,5 @@
 .gcloudignore
 .git
-.gitignore
 node_modules
 yarn-error.log
 tslint.json
@@ -9,3 +8,5 @@ yarn.lock
 README.md
 LICENSE
 server/*ts
+
+#!include:.gitignore

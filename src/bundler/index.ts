@@ -22,27 +22,13 @@ import {
 import { tmpdir } from "../config";
 import { PackageJSON } from "../types";
 
-process.send("ready");
-
-process.on("message", (message) => {
-  if (message.type === "start") {
-    createBundle(message.params);
-  }
-});
-
-const createBundle = async ({
-  hash,
-  pkg,
-  version,
-  deep,
-  query,
-}: {
-  hash: string;
-  pkg: PackageJSON;
-  version: string;
-  deep: string;
-  query: ParsedUrlQueryInput;
-}) => {
+export const createBundle = async (
+  hash: string,
+  pkg: PackageJSON,
+  version: string,
+  deep: string,
+  query: ParsedUrlQueryInput
+): Promise<string> => {
   const dir = `${tmpdir}/${hash}`;
   const cwd = `${dir}/package`;
 
@@ -54,22 +40,14 @@ const createBundle = async ({
     await installDependencies(cwd);
 
     const code = await bundle(cwd, deep, query);
-
-    process.send({
-      type: "result",
-      code,
-    });
+    rmdirSync(dir, { recursive: true });
+    return code;
   } catch (err) {
     rmdirSync(dir, { recursive: true });
 
-    process.send({
-      type: "error",
-      message: err.message,
-      stack: err.stack,
-    });
+    console.error(err.stack);
+    throw new Error(err.message);
   }
-
-  rmdirSync(dir, { recursive: true });
 };
 
 const bundle = async (
