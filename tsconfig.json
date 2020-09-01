@@ -5,7 +5,7 @@
     "outDir": "dist",
     "declaration": true,
     "lib": ["es2015"],
-    "rootDir": "server",
+    "rootDir": "src",
     "sourceMap": true,
     "types": ["node"],
     "emitDecoratorMetadata": true,
@@ -16,9 +16,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
-    "incremental": true,
     "moduleResolution": "node"
   },
-  "include": ["./server", "./public"],
+  "include": ["./src", "./public"],
   "exclude": ["node_modules", "dist", "./__tests__/**/*"]
 }

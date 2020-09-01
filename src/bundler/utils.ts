@@ -99,10 +99,7 @@ export const exec = (
 };
 
 export const info = (message: string): void => {
-  process.send({
-    type: "info",
-    message,
-  });
+  console.info(message);
 };
 
 export const findEntry = (file: string): string => {

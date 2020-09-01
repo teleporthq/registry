@@ -1,16 +1,17 @@
 {
   "name": "@teleporthq/teleport-registry-packer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A opionated bundler for serving packages from npm",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "start": "node server",
-    "dev": "ts-node ./server/index.ts",
+    "dev": "ts-node-dev ./src/index.ts",
     "clean": "rimraf dist",
     "compile": "tsc",
-    "build": "npm run clean && npm run compile"
+    "build": "npm run clean && npm run compile",
+    "postbuild": "mkdir dist/public && cp -r public dist/",
+    "local:deploy": "functions-framework --source ./dist/index.js --target=app"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "terser": "^3.14.1"
   },
   "devDependencies": {
+    "@google-cloud/functions-framework": "^1.7.1",
     "@types/babel__core": "^7.1.9",
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.7",
@@ -70,7 +72,7 @@
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "rimraf": "^3.0.2",
-    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0-pre.61",
     "typescript": "^3.9.7"
   }
 }

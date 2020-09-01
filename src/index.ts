@@ -32,18 +32,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// redirect /bundle/foo to /foo
-// app.get("/bundle/:id", (req, res) => {
-//   const queryString = Object.keys(req.query)
-//     .map((key) => `${key}=${encodeURIComponent(req.query[key])}`)
-//     .join("&");
-
-//   let url = req.url.replace("/bundle", "");
-//   if (queryString) url += `?${queryString}`;
-
-//   res.redirect(301, url);
-// });
-
 app.use(
   express.static(`${root}/public`, {
     maxAge: 600,
@@ -60,8 +48,11 @@ app.get("/", (req, res) => {
 
 app.use(servePackage);
 
-app.listen(port, () => {
-  logger.log(`started at ${new Date().toUTCString()}`);
-  console.log("listening on localhost:" + port);
-  if (process.send) process.send("start");
-});
+if (process.env.NODE_ENV === "development") {
+  app.listen(port, () => {
+    logger.log(`started at ${new Date().toUTCString()}`);
+    console.log("listening on localhost:" + port);
+  });
+}
+
+export { app };
