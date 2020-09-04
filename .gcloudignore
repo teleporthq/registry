@@ -7,6 +7,4 @@ tsconfig.json
 yarn.lock
 README.md
 LICENSE
-server/*ts
-
-#!include:.gitignore
+src/*ts
