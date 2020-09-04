@@ -8,6 +8,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import replace from "rollup-plugin-replace";
 import babel from "@rollup/plugin-babel";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 // @ts-ignore
 import importMap from "rollup-plugin-esm-import-to-url";
 
@@ -83,6 +84,7 @@ const bundleWithRollup = async (
   const bundle = await rollup({
     input: path.resolve(cwd, moduleEntry),
     plugins: [
+      nodePolyfills(),
       replace({
         "process.env.NODE_ENV": JSON.stringify("production"),
       }),
