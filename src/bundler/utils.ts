@@ -1,5 +1,5 @@
 import { createWriteStream, statSync, writeFileSync } from "fs";
-import request from "request";
+import fetch from "node-fetch";
 import child_process from "child_process";
 import tar from "tar";
 import { npmInstallEnvVars, root } from "../config";
@@ -51,11 +51,19 @@ export const fetchAndExtract = (
       timedout = true;
     }, 10000);
 
-    const input = request(tarUrl);
+    const input = fetch(tarUrl);
 
     const intermediate = createWriteStream(`${dir}/package.tgz`);
 
-    input.pipe(intermediate);
+    input
+      .then((res) => {
+        res.body.pipe(intermediate);
+      })
+      .catch((err) => {
+        reject(
+          new Error(`Failed in saving package fetched from registry ${err}`)
+        );
+      });
 
     intermediate.on("close", () => {
       clearTimeout(timeout);
