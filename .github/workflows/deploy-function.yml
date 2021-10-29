@@ -18,7 +18,7 @@ jobs:
       - uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: registry-packer
-          runtime: nodejs14
+          runtime: nodejs16
           entry_point: app
           region: europe-west1
           env_vars: NODE_ENV=production
