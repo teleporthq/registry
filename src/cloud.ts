@@ -1,12 +1,12 @@
 import { Storage } from "@google-cloud/storage";
-import { CACHE_CONTROL, APPLICATION_TYPE, config } from "./constants";
+import { CACHE_CONTROL, APPLICATION_TYPE } from "./constants";
 
 class GoogleCloud {
   private bucket: any;
 
   constructor() {
     const storage = new Storage();
-    this.bucket = storage.bucket(config.bucketName);
+    this.bucket = storage.bucket(process.env.BUCKET_NAME);
   }
 
   public async fetchPackage(pacakgeName: string) {
@@ -24,12 +24,11 @@ class GoogleCloud {
     }
   }
 
-  public async uploadPackage(packageContent: string, pacakgeName: string) {
+  public async uploadPackage(packageContent: Buffer, pacakgeName: string) {
     try {
       const file = this.bucket.file(pacakgeName);
 
-      const bufferStream = Buffer.from(packageContent);
-      await file.save(bufferStream, {
+      await file.save(packageContent, {
         metadata: {
           gzip: true,
           contentType: APPLICATION_TYPE,
@@ -45,4 +44,4 @@ class GoogleCloud {
   }
 }
 
-export default GoogleCloud;
+export { GoogleCloud };

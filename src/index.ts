@@ -1,70 +1,74 @@
 import express from "express";
-import { transformSync } from "@swc/core";
+import { buildSync } from "esbuild";
+import { GoogleCloud } from "./cloud";
 import { generator } from "./generator";
-import GoogleCloud from "./cloud";
-import { ComponentUIDL } from "@teleporthq/teleport-types";
+import { camelCaseToDashCase } from "./constants";
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from "fs";
+import { ComponentUIDL, FileType } from "@teleporthq/teleport-types";
+import { join } from "path";
+const buildPath = join(__dirname, "../build");
+import { v4 } from "uuid";
 
-const googleCloud = new GoogleCloud();
+const cloud = new GoogleCloud();
 const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.json());
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
 
-app.get("/:packageName", async (req, res) => {
-  const { packageName } = req.params;
-  const pacakgeContent = googleCloud.fetchPackage(packageName);
+app.post("/build-package", async (req, res) => {
+  const { components = [], entry } = req.body;
 
-  res
-    .status(200)
-    .setHeader("Content-Type", "application/json")
-    .send(pacakgeContent);
-});
+  if (!entry) {
+    res.sendStatus(400).json({ error: "Entry file is missing" });
+  }
 
-app.post("/component", async (req, res) => {
-  const {
-    uidl,
-  }: {
-    uidl: string;
-  } = req.body;
+  if (components.length === 0) {
+    res.sendStatus(400).json({ error: "No components received" });
+    return;
+  }
 
   try {
-    const compUIDL: ComponentUIDL = JSON.parse(uidl);
-    const { files } = await generator.generateComponent(compUIDL);
-    const parsedResult = transformSync(files[0].content, {
-      jsc: {
-        target: "es2016",
-        parser: {
-          syntax: "ecmascript",
-          jsx: true,
-          dynamicImport: false,
-          numericSeparator: false,
-          privateMethod: true,
-          functionBind: false,
-          exportDefaultFrom: false,
-          exportNamespaceFrom: false,
-          decorators: false,
-          decoratorsBeforeExport: false,
-          topLevelAwait: false,
-          importMeta: false,
-        },
-      },
+    for (const comp of components) {
+      const compUIDL = JSON.parse(comp) as ComponentUIDL;
+      const { files } = await generator.generateComponent(compUIDL);
+      const base = join(buildPath, camelCaseToDashCase(compUIDL.name));
+      if (!existsSync(buildPath)) {
+        mkdirSync(buildPath);
+      }
+      writeFileSync(`${base}.jsx`, files[0].content, "utf-8");
+    }
+
+    const entryPath = `${join(buildPath, camelCaseToDashCase(entry))}.jsx`;
+    const outfile = join(buildPath, "package.js");
+    buildSync({
+      bundle: true,
+      entryPoints: [entryPath],
+      outfile,
+      format: "esm",
+      jsx: "transform",
+      jsxFragment: "Fragment",
+      minifyWhitespace: false,
+      target: ["es2016"],
+      external: ["react", "styled-components"],
     });
-    const result = await googleCloud.uploadPackage(
-      parsedResult.code,
-      compUIDL.name
-    );
-    console.log(result);
+
+    const packageId = v4();
+    await cloud.uploadPackage(readFileSync(outfile), packageId);
+    res
+      .sendStatus(200)
+      .json({ id: packageId, url: `https://jscdn.teleporthq.io/${packageId}` });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ error: "Failed in generating component" });
+    res.sendStatus(500).json({ error: "Failed in generating component" });
+    return;
   }
 });
 
