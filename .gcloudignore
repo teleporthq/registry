@@ -1,10 +1,11 @@
 .gcloudignore
 .git
 .gitignore
+.github
 node_modules
 tslint.json
 tsconfig.json
 package-lock.json
 README.md
 LICENSE
-src/*ts
+src

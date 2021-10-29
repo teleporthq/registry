@@ -19,8 +19,8 @@ jobs:
         with:
           name: registry-packer
           runtime: nodejs14
-          entry-point: app
+          entry_point: app
           region: europe-west1
-          env-vars: NODE_ENV=production
+          env_vars: NODE_ENV=production
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           credentials: ${{ secrets.GCLOUD_AUTH }}
