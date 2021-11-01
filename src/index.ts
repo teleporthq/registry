@@ -1,13 +1,20 @@
 import express from "express";
 import { buildSync } from "esbuild";
 import { GoogleCloud } from "./cloud";
-import { generator } from "./generator";
+import { generator, styleSheetGenerator } from "./generator";
 import { camelCaseToDashCase } from "./constants";
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from "fs";
-import { ComponentUIDL, FileType } from "@teleporthq/teleport-types";
+import {
+  writeFileSync,
+  mkdirSync,
+  existsSync,
+  readFileSync,
+  rmdirSync,
+} from "fs";
+import { ComponentUIDL } from "@teleporthq/teleport-types";
+import { Parser } from "@teleporthq/teleport-uidl-validator";
 import { join } from "path";
-const buildPath = join(__dirname, "../build");
 import { v4 } from "uuid";
+import { tmpdir } from "os";
 
 const cloud = new GoogleCloud();
 const port = process.env.PORT || 8080;
@@ -24,30 +31,86 @@ app.use((req, res, next) => {
 });
 
 app.post("/build-package", async (req, res) => {
-  const { components = [], entry } = req.body;
+  const { components, entry, designLanguage, styleSetDefinitions } =
+    req.body || {
+      styleSetDefinitions: {},
+      designLanguage: {},
+      entry: null,
+      components: [],
+    };
 
   if (!entry) {
-    res.sendStatus(400).json({ error: "Entry file is missing" });
-  }
-
-  if (components.length === 0) {
-    res.sendStatus(400).json({ error: "No components received" });
+    res.status(400).json({ error: "Entry file is missing" });
     return;
   }
 
+  if (components.length === 0) {
+    res.status(400).json({ error: "No components received" });
+    return;
+  }
+
+  const buildPath = join(tmpdir(), "build");
+  const entryPath = `${join(buildPath, camelCaseToDashCase(entry))}.jsx`;
+  const outfile = join(buildPath, "package.js");
+  const external: string[] = ["react", "react-dom"];
+
+  if (!existsSync(buildPath)) {
+    mkdirSync(buildPath);
+  }
+
+  /* Generating gloal style sheet */
+  const rootUIDL: ComponentUIDL = {
+    name: "root",
+    designLanguage: JSON.parse(designLanguage),
+    styleSetDefinitions: JSON.parse(styleSetDefinitions),
+    stateDefinitions: {},
+    propDefinitions: {},
+    node: {
+      type: "element",
+      content: {
+        elementType: "container",
+      },
+    },
+  };
+  const parsedComponentUIDL = Parser.parseComponentJSON(
+    rootUIDL as unknown as Record<string, unknown>
+  );
+  const { files, dependencies } = await styleSheetGenerator.generateComponent(
+    rootUIDL,
+    {
+      isRootComponent: true,
+    }
+  );
+
+  writeFileSync(
+    join(buildPath, `${files[0].name}.${files[0].fileType}`),
+    files[0].content,
+    "utf-8"
+  );
+  external.push(...Object.keys(dependencies));
+
+  /* Generating components */
   try {
     for (const comp of components) {
       const compUIDL = JSON.parse(comp) as ComponentUIDL;
-      const { files } = await generator.generateComponent(compUIDL);
-      const base = join(buildPath, camelCaseToDashCase(compUIDL.name));
-      if (!existsSync(buildPath)) {
-        mkdirSync(buildPath);
-      }
+      const { files, dependencies } = await generator.generateComponent(
+        compUIDL,
+        {
+          projectStyleSet: {
+            styleSetDefinitions: parsedComponentUIDL.styleSetDefinitions,
+            fileName: "style",
+            path: "./",
+            importFile: false,
+          },
+          designLanguage: parsedComponentUIDL.designLanguage,
+        }
+      );
+      const compName = camelCaseToDashCase(compUIDL.name);
+      const base = join(buildPath, compName);
+      external.push(...Object.keys(dependencies));
       writeFileSync(`${base}.jsx`, files[0].content, "utf-8");
     }
 
-    const entryPath = `${join(buildPath, camelCaseToDashCase(entry))}.jsx`;
-    const outfile = join(buildPath, "package.js");
     buildSync({
       bundle: true,
       entryPoints: [entryPath],
@@ -55,19 +118,23 @@ app.post("/build-package", async (req, res) => {
       format: "esm",
       jsx: "transform",
       jsxFragment: "Fragment",
-      minifyWhitespace: false,
+      // minifyWhitespace: process.env.NODE_ENV === "development" ? false : true,
+      minifyWhitespace: true,
       target: ["es2016"],
-      external: ["react", "styled-components"],
+      platform: "browser",
+      external,
     });
 
-    const packageId = v4();
+    const packageId = `${camelCaseToDashCase(entry)}_${v4()}.js`;
     await cloud.uploadPackage(readFileSync(outfile), packageId);
+    rmdirSync(buildPath, { recursive: true });
+
     res
-      .sendStatus(200)
+      .status(200)
       .json({ id: packageId, url: `https://jscdn.teleporthq.io/${packageId}` });
   } catch (e) {
     console.error(e);
-    res.sendStatus(500).json({ error: "Failed in generating component" });
+    res.status(500).json({ error: "Failed in generating component" });
     return;
   }
 });

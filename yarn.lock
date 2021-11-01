@@ -1184,7 +1184,7 @@
 
 "@teleporthq/teleport-uidl-validator@^0.19.4":
   version "0.19.4"
-  resolved "https://registry.npmjs.org/@teleporthq/teleport-uidl-validator/-/teleport-uidl-validator-0.19.4.tgz"
+  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-uidl-validator/-/teleport-uidl-validator-0.19.4.tgz#3f3eab8f19e002877652601ae7ed6ffc7cba6a45"
   integrity sha512-fdIGfVe8E2zrBNGNag8CXuIQU62wMWMQmn5E0Kl0+muYmQANEsb0s0oEX2uQLFFp0x0PyzBg2JMlqfXU6OiPFA==
   dependencies:
     "@mojotech/json-type-validation" "^3.1.0"
