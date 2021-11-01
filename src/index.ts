@@ -61,8 +61,8 @@ app.post("/build-package", async (req, res) => {
   /* Generating gloal style sheet */
   const rootUIDL: ComponentUIDL = {
     name: "root",
-    designLanguage: JSON.parse(designLanguage),
-    styleSetDefinitions: JSON.parse(styleSetDefinitions),
+    designLanguage,
+    styleSetDefinitions,
     stateDefinitions: {},
     propDefinitions: {},
     node: {
@@ -92,20 +92,16 @@ app.post("/build-package", async (req, res) => {
   /* Generating components */
   try {
     for (const comp of components) {
-      const compUIDL = JSON.parse(comp) as ComponentUIDL;
-      const { files, dependencies } = await generator.generateComponent(
-        compUIDL,
-        {
-          projectStyleSet: {
-            styleSetDefinitions: parsedComponentUIDL.styleSetDefinitions,
-            fileName: "style",
-            path: "./",
-            importFile: false,
-          },
-          designLanguage: parsedComponentUIDL.designLanguage,
-        }
-      );
-      const compName = camelCaseToDashCase(compUIDL.name);
+      const { files, dependencies } = await generator.generateComponent(comp, {
+        projectStyleSet: {
+          styleSetDefinitions: parsedComponentUIDL.styleSetDefinitions,
+          fileName: "style",
+          path: "./",
+          importFile: false,
+        },
+        designLanguage: parsedComponentUIDL.designLanguage,
+      });
+      const compName = camelCaseToDashCase(comp.name);
       const base = join(buildPath, compName);
       external.push(...Object.keys(dependencies));
       writeFileSync(`${base}.jsx`, files[0].content, "utf-8");
@@ -118,7 +114,6 @@ app.post("/build-package", async (req, res) => {
       format: "esm",
       jsx: "transform",
       jsxFragment: "Fragment",
-      // minifyWhitespace: process.env.NODE_ENV === "development" ? false : true,
       minifyWhitespace: true,
       target: ["es2016"],
       platform: "browser",

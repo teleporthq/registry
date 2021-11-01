@@ -5,10 +5,12 @@ import reactStyledComponentsPlugin, {
 import importStatementsPlugin from "@teleporthq/teleport-plugin-import-statements";
 import { createComponentGenerator } from "@teleporthq/teleport-component-generator";
 import { ReactMapping } from "@teleporthq/teleport-component-generator-react";
+import propTypesPlugin from '@teleporthq/teleport-plugin-jsx-proptypes'
 
 const generator = createComponentGenerator();
 generator.addMapping(ReactMapping);
 generator.addPlugin(reactComponentPlugin);
+generator.addPlugin(propTypesPlugin)
 generator.addPlugin(reactStyledComponentsPlugin);
 generator.addPlugin(importStatementsPlugin);
 

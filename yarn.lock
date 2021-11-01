@@ -1093,7 +1093,7 @@
 
 "@teleporthq/teleport-plugin-jsx-proptypes@^0.19.1":
   version "0.19.1"
-  resolved "https://registry.npmjs.org/@teleporthq/teleport-plugin-jsx-proptypes/-/teleport-plugin-jsx-proptypes-0.19.1.tgz"
+  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-jsx-proptypes/-/teleport-plugin-jsx-proptypes-0.19.1.tgz#910e76bec2eb393ecbd723a68e948b451d8d8cdf"
   integrity sha512-aekxmHYEtEKGLjl0DxmMGIEbP6+2XstoeYfwWLjLEtvOA+aA+BYk4n0f4f0XjOrQx26LOJ+wjzvzh6pAFbQfzg==
   dependencies:
     "@babel/types" "^7.5.5"
