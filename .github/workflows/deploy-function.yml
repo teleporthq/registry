@@ -21,6 +21,6 @@ jobs:
           runtime: nodejs16
           entry_point: app
           region: europe-west1
-          env_vars: NODE_ENV=production
+          env_vars: NODE_ENV=production,BUCKET_NAME=jscdn.teleporthq.io
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           credentials: ${{ secrets.GCLOUD_AUTH }}
