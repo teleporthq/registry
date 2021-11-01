@@ -10,21 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
       - run: yarn
       - run: yarn build
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: google-github-actions/deploy-cloud-functions@main
         with:
-          version: "290.0.1"
+          name: registry-packer
+          runtime: nodejs16
+          entry_point: app
+          region: europe-west1
+          env_vars: NODE_ENV=production
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-          service_account_key: ${{ secrets.GCLOUD_AUTH }}
-          export_default_credentials: true
-      - run: |
-          gcloud functions deploy registry-packer \
-           --trigger-http \
-           --runtime nodejs14 \
-           --allow-unauthenticated \
-           --region europe-west1 \
-           --entry-point app \
-           --set-env-vars NODE_ENV=production
+          credentials: ${{ secrets.GCLOUD_AUTH }}
