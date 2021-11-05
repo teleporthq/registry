@@ -22,7 +22,7 @@ const cloud = new GoogleCloud();
 const port = process.env.PORT || 8080;
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: "2mb" }));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -113,7 +113,7 @@ app.post("/build-package", async (req, res) => {
           styleSetDefinitions: parsedComponentUIDL.styleSetDefinitions,
           fileName: "style",
           path: "./",
-          importFile: false,
+          importFile: true,
         },
         designLanguage: parsedComponentUIDL.designLanguage,
       });
