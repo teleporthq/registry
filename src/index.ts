@@ -11,17 +11,13 @@ import {
   readFileSync,
   rmdirSync,
 } from "fs";
-import {
-  ComponentUIDL,
-  FileType,
-  ReactStyleVariation,
-} from "@teleporthq/teleport-types";
+import { ComponentUIDL, FileType } from "@teleporthq/teleport-types";
 import { Parser } from "@teleporthq/teleport-uidl-validator";
 import { join } from "path";
 import { v4 } from "uuid";
 import { tmpdir } from "os";
 
-const generator = new Generator(ReactStyleVariation.StyledComponents);
+const generator = new Generator();
 const cloud = new GoogleCloud();
 const port = process.env.PORT || 8080;
 const app = express();
