@@ -1,7 +1,8 @@
 import express from "express";
-import { buildSync } from "esbuild";
+import { build } from "esbuild";
+import esbuildCssModules from "esbuild-css-modules-plugin";
 import { GoogleCloud } from "./cloud";
-import { generator, styleSheetGenerator } from "./generator";
+import { Generator } from "./generator";
 import { camelCaseToDashCase } from "./constants";
 import {
   writeFileSync,
@@ -10,17 +11,18 @@ import {
   readFileSync,
   rmdirSync,
 } from "fs";
-import { ComponentUIDL } from "@teleporthq/teleport-types";
+import { ComponentUIDL, FileType } from "@teleporthq/teleport-types";
 import { Parser } from "@teleporthq/teleport-uidl-validator";
 import { join } from "path";
 import { v4 } from "uuid";
 import { tmpdir } from "os";
 
+const generator = new Generator();
 const cloud = new GoogleCloud();
 const port = process.env.PORT || 8080;
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: "2mb" }));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -49,10 +51,13 @@ app.post("/build-package", async (req, res) => {
     return;
   }
 
-  const buildPath = join(tmpdir(), "build");
+  const buildPath =
+    process.env.NODE_ENV === "development"
+      ? join(__dirname, "../build")
+      : join(tmpdir(), "build");
   const entryPath = `${join(buildPath, camelCaseToDashCase(entry))}.jsx`;
-  const outfile = join(buildPath, "package.js");
-  const external: string[] = ["react", "react-dom"];
+  const outfile = join(buildPath, "bundle.js");
+  const external: string[] = ["react", "react-dom", "react-router-dom"];
 
   if (!existsSync(buildPath)) {
     mkdirSync(buildPath);
@@ -75,46 +80,64 @@ app.post("/build-package", async (req, res) => {
   const parsedComponentUIDL = Parser.parseComponentJSON(
     rootUIDL as unknown as Record<string, unknown>
   );
-  const { files, dependencies } = await styleSheetGenerator.generateComponent(
-    rootUIDL,
-    {
-      isRootComponent: true,
-    }
-  );
 
-  writeFileSync(
-    join(buildPath, `${files[0].name}.${files[0].fileType}`),
-    files[0].content,
-    "utf-8"
-  );
-  external.push(...Object.keys(dependencies));
+  if (
+    Object.keys(styleSetDefinitions || {}).length > 0 ||
+    Object.keys(designLanguage?.tokens || {}).length > 0
+  ) {
+    try {
+      const { files, dependencies } =
+        await generator.styleSheet.generateComponent(rootUIDL, {
+          isRootComponent: true,
+        });
+      writeFileSync(
+        join(buildPath, `${files[0].name}.${files[0].fileType}`),
+        files[0].content,
+        "utf-8"
+      );
+      external.push(...Object.keys(dependencies));
+    } catch (e) {
+      console.trace(e);
+      res
+        .status(500)
+        .json({ error: "Failed in generating global style sheet" });
+      return;
+    }
+  }
 
   /* Generating components */
   try {
     for (const comp of components) {
-      const { files, dependencies } = await generator.generateComponent(comp, {
+      const { files, dependencies } = await generator.component(comp, {
         projectStyleSet: {
           styleSetDefinitions: parsedComponentUIDL.styleSetDefinitions,
           fileName: "style",
           path: "./",
-          importFile: false,
+          importFile: true,
         },
         designLanguage: parsedComponentUIDL.designLanguage,
       });
-      const compName = camelCaseToDashCase(comp.name);
-      const base = join(buildPath, compName);
-      external.push(...Object.keys(dependencies));
-      writeFileSync(`${base}.jsx`, files[0].content, "utf-8");
+
+      files.forEach((file) => {
+        const base = join(buildPath, file.name);
+        external.push(...Object.keys(dependencies));
+        writeFileSync(
+          `${base}.${file.fileType === FileType.JS ? "jsx" : file.fileType}`,
+          file.content,
+          "utf-8"
+        );
+      });
     }
 
-    buildSync({
+    await build({
       bundle: true,
+      plugins: [esbuildCssModules({ localsConvention: "dashes" })],
       entryPoints: [entryPath],
       outfile,
       format: "esm",
       jsx: "transform",
       jsxFragment: "Fragment",
-      minifyWhitespace: true,
+      minifyWhitespace: process.env.NODE_ENV === "development" ? false : true,
       target: ["es2016"],
       platform: "browser",
       external,
