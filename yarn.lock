@@ -1010,81 +1010,6 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@teleporthq/teleport-code-generator@^0.19.5":
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-code-generator/-/teleport-code-generator-0.19.5.tgz#aec1af56aca1542c1f7382a4d7f9bd679e5b8f72"
-  integrity sha512-9CwoNE3waoWaBv14n2JQJTiQWTs8VJBiqDywnxG/04LkUyPrpA9chETDHUvZjvVrkEYSPDNuKgxAXaIinhkwDg==
-  dependencies:
-    "@teleporthq/teleport-component-generator-angular" "^0.19.4"
-    "@teleporthq/teleport-component-generator-html" "^0.19.5"
-    "@teleporthq/teleport-component-generator-preact" "^0.19.4"
-    "@teleporthq/teleport-component-generator-react" "^0.19.4"
-    "@teleporthq/teleport-component-generator-reactnative" "^0.19.4"
-    "@teleporthq/teleport-component-generator-stencil" "^0.19.4"
-    "@teleporthq/teleport-component-generator-vue" "^0.19.4"
-    "@teleporthq/teleport-project-generator-angular" "^0.19.4"
-    "@teleporthq/teleport-project-generator-gatsby" "^0.19.4"
-    "@teleporthq/teleport-project-generator-gridsome" "^0.19.4"
-    "@teleporthq/teleport-project-generator-html" "^0.19.5"
-    "@teleporthq/teleport-project-generator-next" "^0.19.4"
-    "@teleporthq/teleport-project-generator-nuxt" "^0.19.4"
-    "@teleporthq/teleport-project-generator-preact" "^0.19.4"
-    "@teleporthq/teleport-project-generator-react" "^0.19.4"
-    "@teleporthq/teleport-project-generator-reactnative" "^0.19.4"
-    "@teleporthq/teleport-project-generator-stencil" "^0.19.4"
-    "@teleporthq/teleport-project-generator-vue" "^0.19.4"
-    "@teleporthq/teleport-project-packer" "^0.19.1"
-    "@teleporthq/teleport-publisher-codesandbox" "^0.19.1"
-    "@teleporthq/teleport-publisher-disk" "^0.19.1"
-    "@teleporthq/teleport-publisher-github" "^0.19.4"
-    "@teleporthq/teleport-publisher-netlify" "^0.19.1"
-    "@teleporthq/teleport-publisher-vercel" "^0.19.2"
-    "@teleporthq/teleport-publisher-zip" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-component-generator-angular@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-component-generator-angular/-/teleport-component-generator-angular-0.19.4.tgz#3bae9ce6e805a3b3328591bd393a465ae9b982af"
-  integrity sha512-+wsaqDw2mU7qgKq1w8JOll+VdhnW9UsPE4HXSUKW7f/FXJDbOcYyWffEosW+X1But12Ip4NHaP6R+J05kxfm2w==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-angular-base-component" "^0.19.1"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-ts" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-component-generator-html@^0.19.5":
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-component-generator-html/-/teleport-component-generator-html-0.19.5.tgz#160bf6ebafee0f4628f44fef1de0ab2d7c149554"
-  integrity sha512-2aUBz66ne+9SkmOxhJ7BZc850GZGJL/z/vcbbq2Q7JUnXOq41I4p0tooJazLvQGsAuxYwHrTowdGgS/GYeJMKA==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-html-base-component" "^0.19.5"
-    "@teleporthq/teleport-plugin-import-statements-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-component-generator-preact@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-component-generator-preact/-/teleport-component-generator-preact-0.19.4.tgz#ca43765323ff354a2b2adb579cd7c05369fea486"
-  integrity sha512-v9ePypT6rzFoMBHGM6oFh/D5epuzx0biux8hFw4MJK93O0weSGy8cmrgCRKL4XaV5QawAWairD3D3JKcK0OI2g==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-css-modules" "^0.19.1"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-inline-styles" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-proptypes" "^0.19.1"
-    "@teleporthq/teleport-plugin-preact-base-component" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
 "@teleporthq/teleport-component-generator-react@^0.19.4":
   version "0.19.4"
   resolved "https://registry.npmjs.org/@teleporthq/teleport-component-generator-react/-/teleport-component-generator-react-0.19.4.tgz"
@@ -1104,52 +1029,6 @@
     "@teleporthq/teleport-shared" "^0.19.1"
     "@teleporthq/teleport-types" "^0.19.1"
 
-"@teleporthq/teleport-component-generator-reactnative@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-component-generator-reactnative/-/teleport-component-generator-reactnative-0.19.4.tgz#df7ebee1aba1236a5508b1e2030df4126dc09246"
-  integrity sha512-Od2S7eQv1H0Ov3SC6xuDXRnJepu0poBg/aHK47FLY1MuxikBTXcxrx/7rSFxH84qsIyRf+/BQKqBXV/au+ty6A==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-inline-styles" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-proptypes" "^0.19.1"
-    "@teleporthq/teleport-plugin-react-base-component" "^0.19.1"
-    "@teleporthq/teleport-plugin-react-styled-components" "^0.19.1"
-    "@teleporthq/teleport-plugin-reactnative-component-navigation" "^0.19.1"
-    "@teleporthq/teleport-plugin-reactnative-resource-loader" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-jsx" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-component-generator-stencil@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-component-generator-stencil/-/teleport-component-generator-stencil-0.19.4.tgz#db6af18a54b556126b42da686eedee793fabae0e"
-  integrity sha512-xh/dmzbfVPgUXl2YRJ5x1oX05GYWFps443y7ElbuCJbPwfT1IHlsyJncYDqTuxLACxMImLogU6n9N/diuSRNKw==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-stencil-base-component" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-component-generator-vue@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-component-generator-vue/-/teleport-component-generator-vue-0.19.4.tgz#1b435adf5d12d437c4319ffe91a524c120c4350a"
-  integrity sha512-XNE99V2gJBChXTGF56qBhSx0U4k+uTejId9oyaoJHe4Az2Y4KxPQxC5eX/LKc9FuMdOZpN6JQvCMsSJkSURKpA==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-vue-app-routing" "^0.19.1"
-    "@teleporthq/teleport-plugin-vue-base-component" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-vue-file" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
 "@teleporthq/teleport-component-generator@^0.19.4":
   version "0.19.4"
   resolved "https://registry.npmjs.org/@teleporthq/teleport-component-generator/-/teleport-component-generator-0.19.4.tgz"
@@ -1162,34 +1041,6 @@
     "@teleporthq/teleport-types" "^0.19.1"
     "@teleporthq/teleport-uidl-resolver" "^0.19.1"
     "@teleporthq/teleport-uidl-validator" "^0.19.4"
-
-"@teleporthq/teleport-github-gateway@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-github-gateway/-/teleport-github-gateway-0.19.1.tgz#9f3b6b7c0fa23bf638455a9919fb670a2ab19945"
-  integrity sha512-9qQLq7DhkRLq2+d0ePT6KIpN59glX8i5Zv1S+R+MWuseQ6fUZBc6cz3PTI43ceCZpONShnVYjzgcj1lRgXLOeQ==
-  dependencies:
-    "@teleporthq/teleport-types" "^0.19.1"
-    cross-fetch "^3.0.4"
-    github-api "^3.2.2"
-
-"@teleporthq/teleport-plugin-angular-base-component@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-angular-base-component/-/teleport-plugin-angular-base-component-0.19.1.tgz#ab82621ff936a9240acf03392910051dec4ee80e"
-  integrity sha512-OxK984IwWqi1o6oe22OVvhvgtKt0Ou4EeeLqfUZx6LHT5CVcuMO89RzKWGDkw/8cFhXl+1mP0DtI96Eivkl4kg==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-angular-module@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-angular-module/-/teleport-plugin-angular-module-0.19.1.tgz#356dd2aa89c05d82e04e0fbb34bbc1ac52e660a9"
-  integrity sha512-ZLHpPXbtA83qrXbPMmUE5f+D6zCsJ1H57AgYn6wG2m8ppuzDm/uz9yqLNAf2WNqbvMp1waHP2+YnrHwE0PJUFg==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
 
 "@teleporthq/teleport-plugin-common@^0.19.1":
   version "0.19.1"
@@ -1204,7 +1055,7 @@
 
 "@teleporthq/teleport-plugin-css-modules@^0.19.1":
   version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-css-modules/-/teleport-plugin-css-modules-0.19.1.tgz#4c7b18584a33d05a04b799272472c98d674e9c04"
+  resolved "https://registry.npmjs.org/@teleporthq/teleport-plugin-css-modules/-/teleport-plugin-css-modules-0.19.1.tgz"
   integrity sha512-84T0lNvMEsRBnmQfGPa2qFsl1jL54+FwImLPEgB9QHdKphr0fNaKEnA9ZCdKtmtts++2X12IGmzwZP44E4G3KQ==
   dependencies:
     "@babel/types" "^7.5.5"
@@ -1222,40 +1073,11 @@
     "@teleporthq/teleport-shared" "^0.19.1"
     "@teleporthq/teleport-types" "^0.19.1"
 
-"@teleporthq/teleport-plugin-html-base-component@^0.19.5":
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-html-base-component/-/teleport-plugin-html-base-component-0.19.5.tgz#bd82776ec6a2065bbd56c15144b300ce78aa1d21"
-  integrity sha512-tk2TRBVawZNq1k2kPW5ADpG1B6FA2mipgUHF7cZEW3rW0oO/dSsgFDl71tsYMutjYWDHKtHWdP0EDso5ZhFYYg==
-  dependencies:
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    "@teleporthq/teleport-uidl-builders" "^0.19.1"
-
-"@teleporthq/teleport-plugin-import-statements-html@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-import-statements-html/-/teleport-plugin-import-statements-html-0.19.1.tgz#31209be71a058e3f756a36778dfa4f1f8d27c03c"
-  integrity sha512-lESKmyrmS2xBg2nifUrr+fF64UCQENnw3dtzB4/ou4rUP9J/zPG9fxLY7RZioM/EDI51Sqa9VZxCe0NSt4vXaQ==
-  dependencies:
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
 "@teleporthq/teleport-plugin-import-statements@^0.19.1":
   version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-import-statements/-/teleport-plugin-import-statements-0.19.1.tgz#bc81382a2f0188adabc149aab5c626883a6b1e55"
+  resolved "https://registry.npmjs.org/@teleporthq/teleport-plugin-import-statements/-/teleport-plugin-import-statements-0.19.1.tgz"
   integrity sha512-PIYOhQXmSoIy/ZwmZRhJwnEI9HS/o4BQK/DQYYO384NGkoyPUx9uPHOhEL4gpP5adns2Gzo+JUEPVUilmWlOxw==
   dependencies:
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-jsx-head-config@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-jsx-head-config/-/teleport-plugin-jsx-head-config-0.19.1.tgz#677995c12a2891235ecca6027da0d9a5f20b4029"
-  integrity sha512-Fj5eDnAj7pweCSDpoDSFpsouWUg0FSJoDkL062GiE+DvjNq/iFYycg3P+Pyev250EwmVhbdG8Yf05hZ6jeWknQ==
-  dependencies:
-    "@babel/types" "^7.5.5"
     "@teleporthq/teleport-plugin-common" "^0.19.1"
     "@teleporthq/teleport-types" "^0.19.1"
 
@@ -1269,39 +1091,10 @@
     "@teleporthq/teleport-shared" "^0.19.1"
     "@teleporthq/teleport-types" "^0.19.1"
 
-"@teleporthq/teleport-plugin-jsx-next-image@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-jsx-next-image/-/teleport-plugin-jsx-next-image-0.19.1.tgz#342f6b055b2ec4a8ece48e569a573dc8b0d58cf2"
-  integrity sha512-mvsLIk/2n4q049rMFVcLXPVyAcgspG0Rtl8wdfUVdQ3+7w9egu6pDgPtkTnEMEXDG919fKfjiI9X8AaLC54lyw==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
 "@teleporthq/teleport-plugin-jsx-proptypes@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-jsx-proptypes/-/teleport-plugin-jsx-proptypes-0.19.1.tgz#910e76bec2eb393ecbd723a68e948b451d8d8cdf"
   integrity sha512-aekxmHYEtEKGLjl0DxmMGIEbP6+2XstoeYfwWLjLEtvOA+aA+BYk4n0f4f0XjOrQx26LOJ+wjzvzh6pAFbQfzg==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-preact-base-component@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-preact-base-component/-/teleport-plugin-preact-base-component-0.19.1.tgz#4f3c0aa6ad158fdcbde09a5411c369f6476bcff6"
-  integrity sha512-0aLLOR9FyPDT5hjH4j3fAMyFBkXdNby8FsFxF68Zs9lFtp86Zi4Hx1GXTUceJZAgSCPS11OnDcT/IbMrhs+TwA==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-react-app-routing@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-react-app-routing/-/teleport-plugin-react-app-routing-0.19.1.tgz#88a94c5d0bf049826ad2ed57cd1b78327737251d"
-  integrity sha512-ircV0twE4plCZfZLmEDIlhuYoHi270OLonkc4hDmg+ED5voaNv0WPYC++Z4AVfx9PUY4DDZ9IlmFZ9nI+4mtbw==
   dependencies:
     "@babel/types" "^7.5.5"
     "@teleporthq/teleport-plugin-common" "^0.19.1"
@@ -1348,101 +1141,6 @@
     "@teleporthq/teleport-shared" "^0.19.1"
     "@teleporthq/teleport-types" "^0.19.1"
 
-"@teleporthq/teleport-plugin-reactnative-app-routing@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-reactnative-app-routing/-/teleport-plugin-reactnative-app-routing-0.19.1.tgz#63a7428849eac918c5e0d002a9f8428b8d12ca2d"
-  integrity sha512-15mKTMrSQpNhA/ugbdq+Jsr8XEOl9ClEa04xM/N+Iqnw4kOp/GtlveIb4o+8dYVdkJPw39A9YNHLnbMhFcpvsg==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-reactnative-component-navigation@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-reactnative-component-navigation/-/teleport-plugin-reactnative-component-navigation-0.19.1.tgz#82785cc8d210312d8e9e0803f0b3f0ea53619996"
-  integrity sha512-8pYTr8ieobyTN7O/2CImdXn0fJfnsjBsqpQy7TelNgp7P++NIqi0ZfnBhOVpa2Ce4Hgo+L1PJd2HvK/t6ei6ow==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-reactnative-resource-loader@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-reactnative-resource-loader/-/teleport-plugin-reactnative-resource-loader-0.19.1.tgz#997ea45551023e363a1cd593bd3760a72c247b9b"
-  integrity sha512-BctMWCvsyYFzppokUJMZMj6511UBqloafAPtQOg2+z6U5S9AoukVgCh1+35eYA7nlGXkyY0mWVsZRyUU1+O+6A==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-stencil-app-routing@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-stencil-app-routing/-/teleport-plugin-stencil-app-routing-0.19.1.tgz#14ee97723878ec2a3a51da16b810cb359b3cba9a"
-  integrity sha512-1jAj900phN3unMTPq0KcmC9yZ3oivG06+dw3vvYH1LG3l9s+vvOCEoXc4Xx9BkQWV2F1FdjptGr50GJLfSR8iA==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-stencil-base-component@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-stencil-base-component/-/teleport-plugin-stencil-base-component-0.19.1.tgz#756f34023b42e46956d25d6dcfa2cf956d985d87"
-  integrity sha512-xV0S41ClRVj3Kv7/smeQXO99IDHjzJ0T9pOpQSpAKCn6okNnIO7UqdHSHmf72IY9SeBysuh5Aw/TvWeV5NjTcw==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-vue-app-routing@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-vue-app-routing/-/teleport-plugin-vue-app-routing-0.19.1.tgz#f0e49abab5bda2ed5dedf2e2d9231a975253cb74"
-  integrity sha512-H0Rmd3h9IU8GMDlhbrfk9HxPeJlrlsSSWsYKvrkCWzIEyB8L8hg9Gjpfzm7u5kovwlPIn8uDi83rIbWKGzY+ew==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-vue-base-component@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-vue-base-component/-/teleport-plugin-vue-base-component-0.19.1.tgz#2c9f49b360439f0bd30b23a502cf3b7b3f28bf68"
-  integrity sha512-aaNb7F6m+itlumPUwQqbovtWOfCJvVVSxOHZowtDZLcWxW64ApQcoiNofpHT62hECHoE8+ulqhZJjocThcGipw==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-plugin-vue-head-config@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-plugin-vue-head-config/-/teleport-plugin-vue-head-config-0.19.1.tgz#0e3b591920fff528f172e9a143ffd1353c5d4dce"
-  integrity sha512-/23Di4jggPVPG+YlqtlqTYRpJcY3V8hRzso++cDcrko070gaGbs4ZB0S1IhD5vp2MgTb4sy93HOa8EVST4LvFA==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-postprocessor-prettier-html@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-postprocessor-prettier-html/-/teleport-postprocessor-prettier-html-0.19.1.tgz#3fee13b5b2ab5cdfb62ae8ea1cd4630aedbeb1b4"
-  integrity sha512-Wa5kWD9a+eX5ygNUtX1sm8c8yb3hZS30/BXHMUFjXmIClTLSmWYTmhSi8907B5tFnfKjjQrGaZ36pWJZo4qFcg==
-  dependencies:
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    prettier "^2.3.1"
-
-"@teleporthq/teleport-postprocessor-prettier-js@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-postprocessor-prettier-js/-/teleport-postprocessor-prettier-js-0.19.1.tgz#58598d3d03dfc630c7363d4485bcd5e0b08a7d49"
-  integrity sha512-1gTFd0d2auAUyeeTxb2KktftORapmsfPyqXf0G3KK0QQkiOwrd5/gRWqXRS3GqCnvhz17jge+XsS+dJiMw3s4g==
-  dependencies:
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    prettier "^2.3.1"
-
 "@teleporthq/teleport-postprocessor-prettier-jsx@^0.19.1":
   version "0.19.1"
   resolved "https://registry.npmjs.org/@teleporthq/teleport-postprocessor-prettier-jsx/-/teleport-postprocessor-prettier-jsx-0.19.1.tgz"
@@ -1451,277 +1149,6 @@
     "@teleporthq/teleport-shared" "^0.19.1"
     "@teleporthq/teleport-types" "^0.19.1"
     prettier "^2.3.1"
-
-"@teleporthq/teleport-postprocessor-prettier-ts@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-postprocessor-prettier-ts/-/teleport-postprocessor-prettier-ts-0.19.1.tgz#46d272e6fdf7b87235857a233b42b4aecd927d24"
-  integrity sha512-6ON702TYK/s8e3aYiiahOj5ZqWuv9e6ace2hNK8RKZ2L3ZWSUHfZn1E/UAyT1ocmlXQEXdhYPKk1Rnh7fJ73lA==
-  dependencies:
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    prettier "^2.3.1"
-
-"@teleporthq/teleport-postprocessor-vue-file@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-postprocessor-vue-file/-/teleport-postprocessor-vue-file-0.19.1.tgz#da122381e3115507e5288bd4124252fc29c425d2"
-  integrity sha512-KkEbkTdenry0n6sxFJHXgpcIOHXz62v9VFoezsO1d87eV34mQ4lnUjOiu/3ztt3uwYYVIie5QobyxpOiB6lUIQ==
-  dependencies:
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator-angular@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-angular/-/teleport-project-generator-angular-0.19.4.tgz#99d4ccd8e0415e4601bee6c9ab27c8d25717d0e2"
-  integrity sha512-Kr3BAG9lf9UYWZ6WLYiNU0jNVyWrO0HO8UbwdCH1Jb7xXftE5/ZcRCOW/V7pYEzZsimmXcq7IhmBNNcClym+Yw==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-angular" "^0.19.4"
-    "@teleporthq/teleport-plugin-angular-module" "^0.19.1"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-ts" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator-gatsby@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-gatsby/-/teleport-project-generator-gatsby-0.19.4.tgz#278d38fc6c9f22804a2282ed9834a15097c93307"
-  integrity sha512-5QU1equnnIhgyLDdqnI66jsbUKC14GmWhQexXHhCE30FuwIx0FOdkhuQmWzQ33GK6pu4c3NlVXc67VsQBTRbzg==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-plugin-css-modules" "^0.19.1"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-head-config" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-proptypes" "^0.19.1"
-    "@teleporthq/teleport-plugin-react-base-component" "^0.19.1"
-    "@teleporthq/teleport-plugin-react-styled-components" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-jsx" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    "@teleporthq/teleport-uidl-validator" "^0.19.4"
-
-"@teleporthq/teleport-project-generator-gridsome@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-gridsome/-/teleport-project-generator-gridsome-0.19.4.tgz#e7c8feb4482809cf4cabe464aee28dfb759a084e"
-  integrity sha512-ghe2KeILwTGXUE7HGeaI0OuNBHM8m+7YbSusQxRj2Cr1FY3O6KxdFaotnxl6JFSrsLUiSo7IFk9wDFDJ7Ol+wA==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-vue" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-vue-head-config" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator-html@^0.19.5":
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-html/-/teleport-project-generator-html-0.19.5.tgz#f73a4063c51db41c66c8531dd5b4235fa3b1d1c7"
-  integrity sha512-s8xgNKgtN6bNxKzuGnxu8KpdjohfGnNs6SoSkz6BKBKRqJDX0R37IRj2uwtunOWfg+hMWDpoBbjHdTaf6IHRbQ==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-html" "^0.19.5"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    node-html-parser "^5.0.0"
-    path-browserify "^1.0.1"
-
-"@teleporthq/teleport-project-generator-next@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-next/-/teleport-project-generator-next-0.19.4.tgz#03f730bc92ed00c9293b9a4f2469fc273afedab5"
-  integrity sha512-Rgzq07fGKiUlbKqwEBczJZRjO0kHA13ljeAkqlx2FZECc8/JTy85H6CgNABJv0sGIrMuSz/Y9o7IGh1UTjbNLg==
-  dependencies:
-    "@babel/types" "^7.5.5"
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-react" "^0.19.4"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-head-config" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-next-image" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator-nuxt@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-nuxt/-/teleport-project-generator-nuxt-0.19.4.tgz#d3e587cea5123938d0d4f6dc0f159e112ae453c3"
-  integrity sha512-9nAs7d8ddupdWZC9PROfx1mmIDr4C3V9EYz54cM6lDvjS+48M+ypnMxj6BDQAvJKsAKdTCJY7kl4FQuQPrQxiA==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-vue" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-vue-head-config" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator-preact@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-preact/-/teleport-project-generator-preact-0.19.4.tgz#21dd571983bd4180fb53f8d240651f7ebc7c33c1"
-  integrity sha512-SvfETfJCUNXqEdz0HMOmHWlLnl3O2xlxQf//69PSG50uhsJs+cTQvTAEOQWBf+mTuN6cfxSBGpJ1eMfVSlTi6g==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-preact" "^0.19.4"
-    "@teleporthq/teleport-plugin-css-modules" "^0.19.1"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-head-config" "^0.19.1"
-    "@teleporthq/teleport-plugin-react-app-routing" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator-react@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-react/-/teleport-project-generator-react-0.19.4.tgz#ce445a380b8656ed559f496c5d28beefa9e3e307"
-  integrity sha512-Ao0ICZtchWrIdq8F3ycuIzPhiHJTTLuqD4h4QMgX1M/LdEoQumoFD9O2UYYF3RO7X41Ch2dtzAIqxEU0h6pbQQ==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-react" "^0.19.4"
-    "@teleporthq/teleport-plugin-css-modules" "^0.19.1"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-jsx-head-config" "^0.19.1"
-    "@teleporthq/teleport-plugin-react-app-routing" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-types" "^0.19.1"
-    "@teleporthq/teleport-uidl-validator" "^0.19.4"
-
-"@teleporthq/teleport-project-generator-reactnative@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-reactnative/-/teleport-project-generator-reactnative-0.19.4.tgz#ce7f55ad3f697444146b5109b2a2a8c1c5a80d9d"
-  integrity sha512-oGH8iC+ivJyjunu90ECT/Zyql7kzSn4+hTtK9pLE/fUjKY7AwvTMFLw9U1q8ELNDn2Ro+PTco1SIE6YmQ59rqA==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-reactnative" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-react-styled-components" "^0.19.1"
-    "@teleporthq/teleport-plugin-reactnative-app-routing" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-jsx" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator-stencil@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-stencil/-/teleport-project-generator-stencil-0.19.4.tgz#eae10edb9bbf53f306ba5ca1c03f0b50c6552fc6"
-  integrity sha512-CTBXzEH2lbNFb+C0JadgIewIsNJ0rk5/cuafsISCnB4kyO/Ldi9FBljUT70jlxIV8yoJREJP9zrc1zmNvAea7g==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-stencil" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-stencil-app-routing" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    magic-string "^0.25.4"
-
-"@teleporthq/teleport-project-generator-vue@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator-vue/-/teleport-project-generator-vue-0.19.4.tgz#cd88447bafd9fa9792fff8e6d50b00a086851b4a"
-  integrity sha512-4sddw40HZo1bhzTjUNJtMj08s2uynWBfOSV307naJ/NpOzvWG5sdSm2yxwq6CDvYY+qGAX6xSeW5nqhUeiB2Nw==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-component-generator-vue" "^0.19.4"
-    "@teleporthq/teleport-plugin-css" "^0.19.4"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-plugin-vue-app-routing" "^0.19.1"
-    "@teleporthq/teleport-plugin-vue-head-config" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-html" "^0.19.1"
-    "@teleporthq/teleport-postprocessor-prettier-js" "^0.19.1"
-    "@teleporthq/teleport-project-generator" "^0.19.4"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-project-generator@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-generator/-/teleport-project-generator-0.19.4.tgz#832805b4cae43da2812bbc9ff6155bf8c66a2313"
-  integrity sha512-+DO3xqVPC1r6GBKs8crbmF4hPZ8Ii/Vln0B6yCEU3gwCrZIeD+B0CxYhVdwgh/ZteddKYqvUdGLI8Qn0ufLxGA==
-  dependencies:
-    "@teleporthq/teleport-component-generator" "^0.19.4"
-    "@teleporthq/teleport-plugin-common" "^0.19.1"
-    "@teleporthq/teleport-plugin-import-statements" "^0.19.1"
-    "@teleporthq/teleport-shared" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    "@teleporthq/teleport-uidl-builders" "^0.19.1"
-    "@teleporthq/teleport-uidl-validator" "^0.19.4"
-
-"@teleporthq/teleport-project-packer@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-project-packer/-/teleport-project-packer-0.19.1.tgz#f87b4178328dc616a2fc12d42396bc53b78552a2"
-  integrity sha512-WRhOAdZPBlOhGolw+jhLI+7/LOM8TAp+CaIaVJhn5/7hhzLudSntxyzZGtEv/gMSeP6zfe2v/Ce7cEdVODJzKA==
-  dependencies:
-    "@teleporthq/teleport-github-gateway" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    cross-fetch "^3.0.4"
-
-"@teleporthq/teleport-publisher-codesandbox@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-publisher-codesandbox/-/teleport-publisher-codesandbox-0.19.1.tgz#a66d896cb7acae161690d1d1c3212e89a5c0732d"
-  integrity sha512-F0AaXZl0xX+Uxf7PVHNZiKdZQJVQZow100KEs5/1oE7zWvyJlrcGWW4fB8hzuTyIe/n70IwxMWwwnfAvChEKVA==
-  dependencies:
-    "@teleporthq/teleport-publisher-zip" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    cross-fetch "^3.0.4"
-
-"@teleporthq/teleport-publisher-disk@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-publisher-disk/-/teleport-publisher-disk-0.19.1.tgz#bb5cbf9141c648485fe6bbfc6b3ab9bb75270235"
-  integrity sha512-btBETiLeeqV0+AtA3vPFzO/KA+aHkx2MqQqxHGhVq9/7+nKXIdPYCphuCl9JUOe9TujmEYLgrfpUJjlJho2mZw==
-  dependencies:
-    "@teleporthq/teleport-types" "^0.19.1"
-    cross-fetch "^3.0.4"
-    path-browserify "^1.0.1"
-
-"@teleporthq/teleport-publisher-github@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-publisher-github/-/teleport-publisher-github-0.19.4.tgz#d7edb1ea6eb1a91b22e32cf16a4e3771eda879b6"
-  integrity sha512-5axWBwaW4xuJmLHCTPlF5bJick05vZMu6WsDK+2R8niRrytPmT6+MT/19Q6BNKXH+YNdMIykFHKZYyS4CD+HEA==
-  dependencies:
-    "@teleporthq/teleport-github-gateway" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-
-"@teleporthq/teleport-publisher-netlify@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-publisher-netlify/-/teleport-publisher-netlify-0.19.1.tgz#7913b29ebb7475a8ab57c0b5418df26da2924b98"
-  integrity sha512-MwtIuTpUWZHK8OZhRmA6WNFMenC8RTqa/eByw8IK4ydFLIRRq3ez5I1+hixkPmpVpukr1e8GR2RH0E/k7BJPLg==
-  dependencies:
-    "@teleporthq/teleport-publisher-zip" "^0.19.1"
-    "@teleporthq/teleport-types" "^0.19.1"
-    cross-fetch "^3.0.4"
-
-"@teleporthq/teleport-publisher-vercel@^0.19.2":
-  version "0.19.2"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-publisher-vercel/-/teleport-publisher-vercel-0.19.2.tgz#86a85fc5e035911abc2540e1ddd397bfb9a017af"
-  integrity sha512-dS9GvOovzg5IiEWWsyoHCO5dC+veO38R1GrpM0tPSu52RfbFMIhu4pFKCbESsY0qY68y/Wbv1nPuw7hTrtTyqg==
-  dependencies:
-    "@teleporthq/teleport-types" "^0.19.1"
-    cross-fetch "^3.0.4"
-
-"@teleporthq/teleport-publisher-zip@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@teleporthq/teleport-publisher-zip/-/teleport-publisher-zip-0.19.1.tgz#6d49e14dac464770b2fc158bfd9abb6429c42324"
-  integrity sha512-9pFLmFNPxumchVJPWKhqNsXJNHu7Ydg/IDmKCyDQyWfMFXFyyBc18+/nnpMbL4sY0cpeD9AgpBx2zzYae9Xh1A==
-  dependencies:
-    "@teleporthq/teleport-types" "^0.19.1"
-    jszip "^3.2.2"
 
 "@teleporthq/teleport-shared@^0.19.1":
   version "0.19.1"
@@ -2058,11 +1485,6 @@ asynckit@^0.4.0:
   resolved "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-at-least-node@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
-  integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
-
 available-typed-arrays@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
@@ -2077,13 +1499,6 @@ aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.11.0.tgz"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
-
-axios@^0.21.1:
-  version "0.21.4"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
-  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
-  dependencies:
-    follow-redirects "^1.14.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -2670,13 +2085,6 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-fetch@^3.0.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
-  integrity sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==
-  dependencies:
-    node-fetch "2.6.1"
-
 cross-spawn@^6.0.4:
   version "6.0.5"
   resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-6.0.5.tgz"
@@ -2874,7 +2282,7 @@ date-and-time@^2.0.0:
   resolved "https://registry.npmjs.org/date-and-time/-/date-and-time-2.0.1.tgz"
   integrity sha512-O7Xe5dLaqvY/aF/MFWArsAM1J4j7w1CSZlPCX9uHgmb+6SbkPd8Q4YOvfvH/cZGvFlJFfHOZKxQtmMUOoZhc/w==
 
-debug@2.6.9, debug@^2.2.0:
+debug@2.6.9:
   version "2.6.9"
   resolved "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
@@ -3196,17 +2604,6 @@ esbuild-android-arm64@0.13.10:
   version "0.13.10"
   resolved "https://registry.yarnpkg.com/esbuild-android-arm64/-/esbuild-android-arm64-0.13.10.tgz#3545c71bf01e8b36535681078cdb0191c8654452"
   integrity sha512-1sCdVAq64yMp2Uhlu+97/enFxpmrj31QHtThz7K+/QGjbHa7JZdBdBsZCzWJuntKHZ+EU178tHYkvjaI9z5sGg==
-
-esbuild-css-modules-plugin@^2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/esbuild-css-modules-plugin/-/esbuild-css-modules-plugin-2.0.9.tgz#121b3e85053115e42f7bde9cacc1db37e8ce6947"
-  integrity sha512-iZ+WaDULSBsyoIsFZTLEsktL6qhggJ+ScAMKXlrPCOwiZ4a/TAHqzgsEO7Q6L1b3X/OmIRxG/ITuXLkD8BDe0Q==
-  dependencies:
-    css-tree "^1.1.3"
-    fs-extra "^9.1.0"
-    postcss "^8.2.7"
-    postcss-modules "^4.0.0"
-    tmp "^0.2.1"
 
 esbuild-darwin-64@0.13.10:
   version "0.13.10"
@@ -3547,11 +2944,6 @@ follow-redirects@^1.0.0:
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.4.tgz"
   integrity sha512-zwGkiSXC1MUJG/qmeIFH2HBJx9u0V46QGUe3YR1fXG8bXQxq7fLj0RjLZQ5nubr9qNJUZrH+xUcwXEoXNpfS+g==
 
-follow-redirects@^1.14.0:
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.5.tgz#f09a5848981d3c772b5392309778523f8d85c381"
-  integrity sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==
-
 foreach@^2.0.5:
   version "2.0.5"
   resolved "https://registry.npmjs.org/foreach/-/foreach-2.0.5.tgz"
@@ -3585,16 +2977,6 @@ fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
   integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
-
-fs-extra@^9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
-  integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
-  dependencies:
-    at-least-node "^1.0.0"
-    graceful-fs "^4.2.0"
-    jsonfile "^6.0.1"
-    universalify "^2.0.0"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -3703,16 +3085,6 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-github-api@^3.2.2:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/github-api/-/github-api-3.4.0.tgz#5da2f56442d4839d324e9faf0ffb2cf30f7650b8"
-  integrity sha512-2yYqYS6Uy4br1nw0D3VrlYWxtGTkUhIZrumBrcBwKdBOzMT8roAe8IvI6kjIOkxqxapKR5GkEsHtz3Du/voOpA==
-  dependencies:
-    axios "^0.21.1"
-    debug "^2.2.0"
-    js-base64 "^2.1.9"
-    utf8 "^2.1.1"
-
 glob-parent@^5.1.0, glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz"
@@ -3802,7 +3174,7 @@ got@^9.6.0:
     to-readable-stream "^1.0.0"
     url-parse-lax "^3.0.0"
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
+graceful-fs@^4.1.2, graceful-fs@^4.2.4:
   version "4.2.8"
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.8.tgz"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
@@ -3911,11 +3283,6 @@ hast-util-whitespace@^1.0.3:
   version "1.0.4"
   resolved "https://registry.npmjs.org/hast-util-whitespace/-/hast-util-whitespace-1.0.4.tgz"
   integrity sha512-I5GTdSfhYfAPNztx2xJRQpG8cuDSNt599/7YUn7Gx/WxNMsG+a835k97TDkFgk123cwjfwINaZknkKkphx/f2A==
-
-he@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
-  integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
 highlight.js@~10.4.0:
   version "10.4.1"
@@ -4082,11 +3449,6 @@ icss-utils@^4.0.0, icss-utils@^4.1.1:
   dependencies:
     postcss "^7.0.14"
 
-icss-utils@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-5.1.0.tgz#c6be6858abd013d768e98366ae47e25d5887b1ae"
-  integrity sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==
-
 ieee754@^1.1.13:
   version "1.2.1"
   resolved "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz"
@@ -4106,11 +3468,6 @@ ignore@^5.1.4:
   version "5.1.8"
   resolved "https://registry.npmjs.org/ignore/-/ignore-5.1.8.tgz"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
-
-immediate@~3.0.5:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
-  integrity sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=
 
 import-fresh@^3.2.1:
   version "3.3.0"
@@ -4470,11 +3827,6 @@ jake@^10.6.1:
     filelist "^1.0.1"
     minimatch "^3.0.4"
 
-js-base64@^2.1.9:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.6.4.tgz#f4e686c5de1ea1f867dbcad3d46d969428df98c4"
-  integrity sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==
-
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -4572,15 +3924,6 @@ json5@^2.1.0, json5@^2.1.2:
   integrity sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==
   dependencies:
     minimist "^1.2.5"
-
-jsonfile@^6.0.1:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-6.1.0.tgz#bc55b2634793c679ec6403094eb13698a6ec0aae"
-  integrity sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==
-  dependencies:
-    universalify "^2.0.0"
-  optionalDependencies:
-    graceful-fs "^4.1.6"
 
 jsprim@^1.2.2:
   version "1.4.1"
@@ -4726,16 +4069,6 @@ jss@10.8.2, jss@^10.0.0:
     is-in-browser "^1.1.3"
     tiny-warning "^1.0.2"
 
-jszip@^3.2.2:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jszip/-/jszip-3.7.1.tgz#bd63401221c15625a1228c556ca8a68da6fda3d9"
-  integrity sha512-ghL0tz1XG9ZEmRMcEN2vt7xabrDdqHHeykgARpmZ0BiIctWxM47Vt63ZO2dnp4QYt/xJVLLy5Zv1l/xRdh2byg==
-  dependencies:
-    lie "~3.3.0"
-    pako "~1.0.2"
-    readable-stream "~2.3.6"
-    set-immediate-shim "~1.0.1"
-
 jwa@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/jwa/-/jwa-2.0.0.tgz"
@@ -4774,13 +4107,6 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
-
-lie@~3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/lie/-/lie-3.3.0.tgz#dcf82dee545f46074daf200c7c1c5a08e0f40f6a"
-  integrity sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==
-  dependencies:
-    immediate "~3.0.5"
 
 lilconfig@^2.0.3:
   version "2.0.3"
@@ -4880,13 +4206,6 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
-
-magic-string@^0.25.4:
-  version "0.25.7"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
-  integrity sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==
-  dependencies:
-    sourcemap-codec "^1.4.4"
 
 make-dir@^3.0.0:
   version "3.1.0"
@@ -5088,11 +4407,6 @@ node-addon-api@^3.2.1:
   resolved "https://registry.npmjs.org/node-addon-api/-/node-addon-api-3.2.1.tgz"
   integrity sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==
 
-node-fetch@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
-  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
-
 node-fetch@^2.6.1:
   version "2.6.5"
   resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.5.tgz"
@@ -5109,14 +4423,6 @@ node-gyp-build@^4.2.3, node-gyp-build@^4.3.0:
   version "4.3.0"
   resolved "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.3.0.tgz"
   integrity sha512-iWjXZvmboq0ja1pUGULQBexmxq8CV4xBhX7VDOTbL7ZR4FOowwY/VOtRxBN/yKxmdGoIp4j5ysNT4u3S2pDQ3Q==
-
-node-html-parser@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-5.1.0.tgz#753f5a60cdfe6d027c15857cb817df592c18c998"
-  integrity sha512-l6C1Gf1o7YuxeMGa17PypEez/rj+ii3q4/NZG37nRmWSLDjHyB0WNrlE4h2UW92D0JSfUSfu+lOvxThttVe7Jw==
-  dependencies:
-    css-select "^4.1.3"
-    he "1.2.0"
 
 node-releases@^2.0.1:
   version "2.0.1"
@@ -5299,7 +4605,7 @@ package-json@^6.3.0:
     registry-url "^5.0.0"
     semver "^6.2.0"
 
-pako@~1.0.2, pako@~1.0.5:
+pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz"
   integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
@@ -5362,7 +4668,7 @@ parseurl@~1.3.3:
   resolved "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz"
   integrity sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==
 
-path-browserify@^1.0.0, path-browserify@^1.0.1:
+path-browserify@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/path-browserify/-/path-browserify-1.0.1.tgz"
   integrity sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==
@@ -5547,11 +4853,6 @@ postcss-modules-extract-imports@^2.0.0:
   dependencies:
     postcss "^7.0.5"
 
-postcss-modules-extract-imports@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-modules-extract-imports/-/postcss-modules-extract-imports-3.0.0.tgz#cda1f047c0ae80c97dbe28c3e76a43b88025741d"
-  integrity sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==
-
 postcss-modules-local-by-default@1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-1.2.0.tgz"
@@ -5567,15 +4868,6 @@ postcss-modules-local-by-default@^3.0.2:
   dependencies:
     icss-utils "^4.1.1"
     postcss "^7.0.32"
-    postcss-selector-parser "^6.0.2"
-    postcss-value-parser "^4.1.0"
-
-postcss-modules-local-by-default@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.0.0.tgz#ebbb54fae1598eecfdf691a02b3ff3b390a5a51c"
-  integrity sha512-sT7ihtmGSF9yhm6ggikHdV0hlziDTX7oFoXtuVWeDd3hHObNkcHRo9V3yg7vCAY7cONyxJC/XXCmmiHHcvX7bQ==
-  dependencies:
-    icss-utils "^5.0.0"
     postcss-selector-parser "^6.0.2"
     postcss-value-parser "^4.1.0"
 
@@ -5595,13 +4887,6 @@ postcss-modules-scope@^2.2.0:
     postcss "^7.0.6"
     postcss-selector-parser "^6.0.0"
 
-postcss-modules-scope@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-modules-scope/-/postcss-modules-scope-3.0.0.tgz#9ef3151456d3bbfa120ca44898dfca6f2fa01f06"
-  integrity sha512-hncihwFA2yPath8oZ15PZqvWGkWf+XUfQgUGamS4LqoP1anQLOsOJw0vr7J7IwLpoY9fatA2qiGUGmuZL0Iqlg==
-  dependencies:
-    postcss-selector-parser "^6.0.4"
-
 postcss-modules-values@1.3.0:
   version "1.3.0"
   resolved "https://registry.npmjs.org/postcss-modules-values/-/postcss-modules-values-1.3.0.tgz"
@@ -5618,13 +4903,6 @@ postcss-modules-values@^3.0.0:
     icss-utils "^4.0.0"
     postcss "^7.0.6"
 
-postcss-modules-values@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-modules-values/-/postcss-modules-values-4.0.0.tgz#d7c5e7e68c3bb3c9b27cbf48ca0bb3ffb4602c9c"
-  integrity sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==
-  dependencies:
-    icss-utils "^5.0.0"
-
 postcss-modules@^3.2.2:
   version "3.2.2"
   resolved "https://registry.npmjs.org/postcss-modules/-/postcss-modules-3.2.2.tgz"
@@ -5638,20 +4916,6 @@ postcss-modules@^3.2.2:
     postcss-modules-local-by-default "^3.0.2"
     postcss-modules-scope "^2.2.0"
     postcss-modules-values "^3.0.0"
-    string-hash "^1.1.1"
-
-postcss-modules@^4.0.0:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/postcss-modules/-/postcss-modules-4.2.2.tgz#5e7777c5a8964ea176919d90b2e54ef891321ce5"
-  integrity sha512-/H08MGEmaalv/OU8j6bUKi/kZr2kqGF6huAW8m9UAgOLWtpFdhA14+gPBoymtqyv+D4MLsmqaF2zvIegdCxJXg==
-  dependencies:
-    generic-names "^2.0.1"
-    icss-replace-symbols "^1.1.0"
-    lodash.camelcase "^4.3.0"
-    postcss-modules-extract-imports "^3.0.0"
-    postcss-modules-local-by-default "^4.0.0"
-    postcss-modules-scope "^3.0.0"
-    postcss-modules-values "^4.0.0"
     string-hash "^1.1.1"
 
 postcss-normalize-charset@^5.0.1:
@@ -5810,7 +5074,7 @@ postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.32, postcss@^7.0.5, postcss@^7.0.
     picocolors "^0.2.1"
     source-map "^0.6.1"
 
-postcss@^8.2.1, postcss@^8.2.7, postcss@^8.3.0, postcss@^8.3.6:
+postcss@^8.2.1, postcss@^8.3.0, postcss@^8.3.6:
   version "8.3.11"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.3.11.tgz"
   integrity sha512-hCmlUAIlUiav8Xdqw3Io4LcpA1DOt7h3LSTAC4G6JGHFFaWzI6qvFt9oilvl8BmkbBRX1IhM90ZAmpk68zccQA==
@@ -6027,7 +5291,7 @@ react-refresh@^0.9.0:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.9.0.tgz"
   integrity sha512-Gvzk7OZpiqKSkxsQvO/mbTN1poglhmAV7gR/DdIrRrSMXraRQQlfikRJOr3Nb9GTMPC5kof948Zy6jJZIFtDvQ==
 
-"readable-stream@1 || 2", readable-stream@~2.3.6:
+"readable-stream@1 || 2":
   version "2.3.7"
   resolved "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.7.tgz"
   integrity sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==
@@ -6170,7 +5434,7 @@ reusify@^1.0.4:
   resolved "https://registry.npmjs.org/reusify/-/reusify-1.0.4.tgz"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-rimraf@^3.0.0, rimraf@^3.0.2:
+rimraf@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz"
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
@@ -6281,11 +5545,6 @@ serve-static@1.14.1:
     parseurl "~1.3.3"
     send "0.17.1"
 
-set-immediate-shim@~1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
-  integrity sha1-SysbJ+uAip+NzEgaWOXlb1mfP2E=
-
 setimmediate@^1.0.4:
   version "1.0.5"
   resolved "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz"
@@ -6376,11 +5635,6 @@ source-map@~0.7.2:
   version "0.7.3"
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.7.3.tgz"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
-
-sourcemap-codec@^1.4.4:
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
-  integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
 
 space-separated-tokens@^1.1.4:
   version "1.1.5"
@@ -6653,13 +5907,6 @@ tiny-warning@^1.0.2:
   resolved "https://registry.npmjs.org/tiny-warning/-/tiny-warning-1.0.3.tgz"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
-tmp@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
-  integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
-  dependencies:
-    rimraf "^3.0.0"
-
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz"
@@ -6810,11 +6057,6 @@ unist-util-is@^2.1.3:
   resolved "https://registry.npmjs.org/unist-util-is/-/unist-util-is-2.1.3.tgz"
   integrity sha512-4WbQX2iwfr/+PfM4U3zd2VNXY+dWtZsN1fLnWEi2QQXA4qyDYAZcDMfXUX0Cu6XZUHHAO9q4nyxxLT4Awk1qUA==
 
-universalify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
-  integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
-
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz"
@@ -6861,11 +6103,6 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
-
-utf8@^2.1.1:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/utf8/-/utf8-2.1.2.tgz#1fa0d9270e9be850d9b05027f63519bf46457d96"
-  integrity sha1-H6DZJw6b6FDZsFAn9jUZv0ZFfZY=
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
