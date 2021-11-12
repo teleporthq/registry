@@ -10,20 +10,13 @@ export const globals = async (req: Request, res: Response) => {
   };
   try {
     const { files } = await generator.globals(assets);
-    const { filePath, mapPath } = await gcloud.transformAndUpload({
+    const result = await gcloud.transformAndUpload({
       content: files[0].content,
       folder,
       name: files[0].name,
-      opts: {
-        jsx: "transform",
-        jsxFragment: "Fragment",
-        loader: "jsx",
-      },
+      hash: computeHash(files[0].content),
     });
-    return res.status(200).json({
-      file: `https://${process.env.BUCKET_NAME}/${filePath}`,
-      sourcemap: `https://${process.env.BUCKET_NAME}/${mapPath}`,
-    });
+    return res.status(200).json(result);
   } catch (e) {
     console.trace(e);
     return res.status(500).json({ error: "Failed in generating Globals" });

@@ -37,8 +37,8 @@ export class Generator {
     this.styleType = styleType || ReactStyleVariation.StyledComponents;
   }
 
-  async component(uidl: ComponentUIDL, options: GeneratorOptions) {
-    return generateComponent(uidl, {
+  async component(uidl: Record<string, unknown>, options: GeneratorOptions) {
+    return generateComponent(uidl as unknown as ComponentUIDL, {
       styleVariation: this.styleType,
       componentType: ComponentType.REACT,
       // @ts-ignore

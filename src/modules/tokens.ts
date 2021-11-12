@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { gcloud } from "../cloud";
 import { generator } from "../generator";
+import { computeHash } from "../utils";
 
 export const tokens = async (req: Request, res: Response) => {
   const { designLanguage, styleSetDefinitions, folder } = req.body || {
@@ -21,16 +22,14 @@ export const tokens = async (req: Request, res: Response) => {
       styleSetDefinitions
     );
 
-    const { filePath, mapPath } = await gcloud.transformAndUpload({
+    const result = await gcloud.transformAndUpload({
       content: files[0].content,
       name: files[0].name,
       folder,
+      hash: computeHash(files[0].content),
     });
 
-    return res.status(200).json({
-      file: `https://${process.env.BUCKET_NAME}/${filePath}`,
-      sourcemap: `https://${process.env.BUCKET_NAME}/${mapPath}`,
-    });
+    return res.status(200).json(result);
   } catch (e) {
     console.trace(e);
     return res

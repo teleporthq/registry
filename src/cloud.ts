@@ -1,7 +1,12 @@
 import { Storage } from "@google-cloud/storage";
 import { transformSync } from "esbuild";
 import { ContentType } from "./types";
-import { CACHE_CONTROL, computeHash } from "./utils";
+import {
+  CACHE_CONTROL,
+  getCDNFilePath,
+  getFilePath,
+  transformOpts,
+} from "./utils";
 
 class GoogleCloud {
   private bucket: any;
@@ -28,54 +33,45 @@ class GoogleCloud {
     content: string;
     name: string;
     folder: string;
-    opts?: Record<string, string | boolean>;
-  }): Promise<{ filePath: string; mapPath: string }> {
-    const { content, name, folder, opts = {} } = params;
-    const fileName = `${name}.js`;
-    const mapName = `${name}.js.map`;
-    const hash = computeHash(content);
+    hash: string;
+  }): Promise<{ file: string; sourcemap: string }> {
+    const { content, name, folder, hash } = params;
 
-    const filePath = `${folder}/${fileName}@${hash}`;
-    const mapPath = `${folder}/${mapName}@${hash}`;
-    const isFileExists = await this.isFileExists(filePath);
+    const { file, sourcemap } = getFilePath(folder, name, hash);
+    const isFileExists = await this.isFileExists(file);
 
     if (!isFileExists) {
-      const result = transformSync(content, {
-        format: "esm",
-        target: "es6",
-        minify: process.env.NODE_ENV === "development" ? false : true,
-        sourcemap: true,
-        ...opts,
-      });
-      const moduleContent = `${result.code}\n //# sourceMappingURL=./${fileName}.map@${hash}`;
+      const result = transformSync(content, transformOpts);
+      const moduleContent = `${result.code}\n //# sourceMappingURL=./${name}.js.map@${hash}`;
 
       await this.uploadFile(
         Buffer.from(moduleContent, "utf-8"),
-        filePath,
+        file,
         ContentType.JAVASCRIPT
       );
       await this.uploadFile(
         Buffer.from(result.map, "utf-8"),
-        mapPath,
+        sourcemap,
         ContentType.JSON
       );
     }
 
-    return { filePath, mapPath };
+    return getCDNFilePath(folder, name, hash);
   }
 
   public async uploadFile(
     content: Buffer,
     fileName: string,
-    type: ContentType
+    contentType: ContentType
   ) {
+    console.log(`uploadFile`, fileName);
     try {
       const file = this.bucket.file(fileName);
 
       await file.save(content, {
         metadata: {
           gzip: true,
-          contentType: type,
+          contentType,
           cacheControl: CACHE_CONTROL,
         },
         resumable: false,
