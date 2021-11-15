@@ -6,7 +6,7 @@ import {
   UIDLGlobalAsset,
 } from "@teleporthq/teleport-types";
 const { createJSXTag } = ASTBuilders;
-const { addAttributeToJSXTag, addChildJSXTag } = ASTUtils;
+const { addAttributeToJSXTag } = ASTUtils;
 
 interface GlobalPluginProps {
   configTagIdentifier: "Helmet" | "Head";

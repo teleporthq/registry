@@ -42,7 +42,7 @@ export const component = async (req: Request, res: Response) => {
     });
 
     const globalFiles = await generator.globals(assets);
-    await gcloud.transformAndUpload({
+    const gloals = await gcloud.transformAndUpload({
       content: globalFiles.files[0].content,
       name: globalFiles.files[0].name,
       folder,
@@ -62,6 +62,19 @@ export const component = async (req: Request, res: Response) => {
     for (const comp of Object.values(
       components as unknown as Record<string, ComponentUIDL>
     )) {
+      /* Injecting globals component into every component */
+      comp.node.content.children.unshift({
+        type: "element",
+        content: {
+          elementType: "component",
+          semanticType: "Globals",
+          dependency: {
+            version: "0.0.0",
+            type: "package",
+            path: gloals.file,
+          },
+        },
+      });
       const { files } = await generator.component(
         comp as unknown as Record<string, unknown>,
         {
@@ -125,7 +138,7 @@ export const component = async (req: Request, res: Response) => {
 
         const moduleContent = `${magic.toString()}\n //# sourceMappingURL=./${
           comp.name
-        }.map@${loc.version}`;
+        }@${loc.version}.map`;
 
         await gcloud.uploadFile(
           Buffer.from(moduleContent),
