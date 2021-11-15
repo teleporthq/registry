@@ -14,7 +14,6 @@ export const globals = async (req: Request, res: Response) => {
       content: files[0].content,
       folder,
       name: files[0].name,
-      hash: computeHash(files[0].content),
     });
     return res.status(200).json(result);
   } catch (e) {

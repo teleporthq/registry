@@ -1,11 +1,11 @@
-import { createHash } from "crypto";
 import { existsSync, mkdirSync, rmdirSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { TransformOptions } from "esbuild";
+import hash from "object-hash";
 
 export const CACHE_CONTROL =
-  process.env.NODE_ENV === "development" ? "no-cache" : "max-age=3600";
+  process.env.NODE_ENV === "development" ? "max-age=100" : "max-age=3600";
 
 export const camelCaseToDashCase = (str: string): string =>
   str.replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase();
@@ -24,11 +24,8 @@ export const ensureBuildPath = () => {
   }
 };
 
-export const computeHash = (content: string) => {
-  const hashArray = Array.from(
-    new Uint8Array(createHash("SHA1").update(content).digest())
-  );
-  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+export const computeHash = (content: any): string => {
+  return hash(content);
 };
 
 export const transformOpts: TransformOptions = {
@@ -39,14 +36,11 @@ export const transformOpts: TransformOptions = {
   jsx: "transform",
   jsxFragment: "Fragment",
   loader: "jsx",
+  sourcesContent: false,
 };
 
-export const getCDNFilePath = (
-  folder: string,
-  filename: string,
-  version: string
-) => {
-  const { file, sourcemap } = getFilePath(folder, filename, version);
+export const getCDNFilePath = (params: { file: string; sourcemap: string }) => {
+  const { file, sourcemap } = params;
   return {
     file: `https://${process.env.BUCKET_NAME}/${file}`,
     sourcemap: `https://${process.env.BUCKET_NAME}/${sourcemap}`,
@@ -58,8 +52,8 @@ export const getFilePath = (
   filename: string,
   version: string
 ) => {
-  const file = `${folder}/${filename}.js@${version}`;
-  const sourcemap = `${folder}/${filename}.js.map@${version}`;
+  const file = `${folder}/${filename}@${version}.js`;
+  const sourcemap = `${folder}/${filename}@${version}.map`;
 
   return { file, sourcemap };
 };

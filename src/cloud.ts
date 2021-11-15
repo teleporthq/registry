@@ -3,6 +3,7 @@ import { transformSync } from "esbuild";
 import { ContentType } from "./types";
 import {
   CACHE_CONTROL,
+  computeHash,
   getCDNFilePath,
   getFilePath,
   transformOpts,
@@ -33,16 +34,16 @@ class GoogleCloud {
     content: string;
     name: string;
     folder: string;
-    hash: string;
+    hash?: string;
   }): Promise<{ file: string; sourcemap: string }> {
     const { content, name, folder, hash } = params;
-
-    const { file, sourcemap } = getFilePath(folder, name, hash);
+    const version = hash || computeHash(content);
+    const { file, sourcemap } = getFilePath(folder, name, version);
     const isFileExists = await this.isFileExists(file);
 
     if (!isFileExists) {
       const result = transformSync(content, transformOpts);
-      const moduleContent = `${result.code}\n //# sourceMappingURL=./${name}.js.map@${hash}`;
+      const moduleContent = `${result.code}\n //# sourceMappingURL=./${name}.map@${version}`;
 
       await this.uploadFile(
         Buffer.from(moduleContent, "utf-8"),
@@ -56,7 +57,7 @@ class GoogleCloud {
       );
     }
 
-    return getCDNFilePath(folder, name, hash);
+    return getCDNFilePath(getFilePath(folder, name, version));
   }
 
   public async uploadFile(
@@ -64,7 +65,7 @@ class GoogleCloud {
     fileName: string,
     contentType: ContentType
   ) {
-    console.log(`uploadFile`, fileName);
+    console.log(`Uploading`, fileName);
     try {
       const file = this.bucket.file(fileName);
 

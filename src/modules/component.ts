@@ -3,7 +3,7 @@ import { gcloud } from "../cloud";
 import { generator } from "../generator";
 import { resolveStyleSetDefinitions } from "@teleporthq/teleport-uidl-resolver";
 import { ComponentUIDL } from "@teleporthq/teleport-types";
-import { init, parse } from "es-module-lexer";
+import { ImportSpecifier, init, parse } from "es-module-lexer";
 import {
   computeHash,
   getCDNFilePath,
@@ -19,17 +19,15 @@ const MagicString = require("magic-string");
 export const component = async (req: Request, res: Response) => {
   const { styleSetDefinitions, designLanguage, folder, assets, components } =
     req.body || {
-      components: {},
       styleSetDefinitions: {},
       designLanguage: {},
       assets: [],
       folder: null,
+      components: {},
     };
 
   try {
     await init;
-    let paths: Map<string, { file: string; sourcemap: string }> = new Map();
-
     const styleFiles = await generator.tokens(
       designLanguage,
       styleSetDefinitions
@@ -42,93 +40,108 @@ export const component = async (req: Request, res: Response) => {
       folder,
       hash,
     });
-    paths.set("style", style);
 
     const globalFiles = await generator.globals(assets);
-    const globalHash = computeHash(globalFiles.files[0].content);
-    const globals = await gcloud.transformAndUpload({
+    await gcloud.transformAndUpload({
       content: globalFiles.files[0].content,
       name: globalFiles.files[0].name,
       folder,
-      hash: globalHash,
     });
-    paths.set("globals", globals);
 
-    /* Generating all components */
+    /* Traversing commponents */
     const comps: Record<
       string,
-      {
-        content: string;
-        hash: string;
-        map?: string;
-        file?: string;
-        sourcemap?: string;
-      }
+      { name: string; content: string; hash: string; deps: ImportSpecifier[] }
     > = {};
-    for (const comp of Object.values(components as unknown as ComponentUIDL)) {
-      const { files } = await generator.component(comp, {
-        projectStyleSet: {
-          styleSetDefinitions: resolveStyleSetDefinitions(styleSetDefinitions),
-          path: "",
-          fileName: "style",
-          importFile: true,
-        },
-      });
+    const projectStyleSet = {
+      styleSetDefinitions: resolveStyleSetDefinitions(styleSetDefinitions),
+      fileName: "",
+      path: style.file,
+      importFile: true,
+    };
+    for (const comp of Object.values(
+      components as unknown as Record<string, ComponentUIDL>
+    )) {
+      const { files } = await generator.component(
+        comp as unknown as Record<string, unknown>,
+        {
+          projectStyleSet,
+        }
+      );
+      const hash = computeHash(files[0].content);
+      const content = transformSync(files[0].content, transformOpts).code;
+      const [imports] = parse(content);
 
-      comps[`./${camelCaseToDashCase(removeIllegalCharacters(comp.name))}`] = {
-        content: files[0].content,
-        hash: computeHash(files[0].content),
+      comps[removeIllegalCharacters(camelCaseToDashCase(comp.name))] = {
+        name: files[0].name,
+        hash,
+        content,
+        deps: imports.filter((imp) => imp.n.startsWith(".")),
       };
     }
 
-    /* Remapping the hashes of local imports with remote locations */
+    /* Computing hashes with dependents */
+    const files: Record<
+      string,
+      { version: string; file: string; sourcemap: string }
+    > = {};
+    Object.keys(comps).forEach((compId) => {
+      const comp = comps[compId];
+      const version = {
+        ...comps[compId].deps.reduce(
+          (acc: Record<string, string>, id: ImportSpecifier) => {
+            const accId = id.n.substring(2);
+            acc[accId] = comps[accId].hash;
+            return acc;
+          },
+          {}
+        ),
+        [compId]: comps[compId].hash,
+      };
+      const hash = computeHash(version);
+      files[compId] = {
+        version: hash,
+        ...getFilePath(folder, comp.name, hash),
+      };
+    });
+
+    /* Upload to bucket */
     for (const compId of Object.keys(comps)) {
-      const { code } = transformSync(comps[compId].content, {
-        ...transformOpts,
-        minify: false,
-      });
-      const [imports] = parse(code);
-      const magic = new MagicString(code);
+      const comp = comps[compId];
+      const loc = files[compId];
+      const isFileExists = await gcloud.isFileExists(loc.file);
+      const isSourceMapExists = await gcloud.isFileExists(loc.sourcemap);
 
-      for (const id of imports) {
-        if (id.n.startsWith(".")) {
-          const { file } = getCDNFilePath(
-            folder,
-            id.n.substring(2),
-            comps[id.n].hash
+      if (!isFileExists || !isSourceMapExists) {
+        const magic = new MagicString(comp.content);
+
+        comp.deps.forEach((dep) => {
+          magic.overwrite(
+            dep.s,
+            dep.e,
+            getCDNFilePath(files[dep.n.substring(2)]).file
           );
-          magic.overwrite(id.s, id.e, file);
-        }
+        });
 
-        if (id.n === "style") {
-          magic.overwrite(id.s, id.e, paths.get("style").file);
-        }
-      }
+        const moduleContent = `${magic.toString()}\n //# sourceMappingURL=./${
+          comp.name
+        }.map@${loc.version}`;
 
-      const filename = compId.substring(2);
-      const { file, sourcemap } = getFilePath(
-        folder,
-        filename,
-        comps[compId].hash
-      );
-      const isFileExists = await gcloud.isFileExists(file);
-      if (!isFileExists) {
         await gcloud.uploadFile(
-          Buffer.from(magic.toString()),
-          file,
+          Buffer.from(moduleContent),
+          loc.file,
           ContentType.JAVASCRIPT
         );
+
         await gcloud.uploadFile(
           Buffer.from(magic.generateMap().toString()),
-          sourcemap,
+          loc.sourcemap,
           ContentType.JSON
         );
       }
-
-      paths.set(filename, getCDNFilePath(folder, filename, comps[compId].hash));
     }
 
-    res.status(200).json(Object.fromEntries(paths));
+    res.status(200).json(files);
   } catch (e) {
     console.trace(e);
     res.status(500).json({ error: "Failed in generating component" });

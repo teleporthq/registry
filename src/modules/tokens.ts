@@ -26,7 +26,6 @@ export const tokens = async (req: Request, res: Response) => {
       content: files[0].content,
       name: files[0].name,
       folder,
-      hash: computeHash(files[0].content),
     });
 
     return res.status(200).json(result);
