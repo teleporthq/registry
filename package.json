@@ -16,22 +16,30 @@
     "@google-cloud/storage": "^5.15.3",
     "@teleporthq/teleport-code-generator": "^0.19.5",
     "@teleporthq/teleport-component-generator": "^0.19.4",
+    "@teleporthq/teleport-plugin-common": "^0.19.1",
     "@teleporthq/teleport-plugin-css-modules": "^0.19.1",
     "@teleporthq/teleport-plugin-import-statements": "^0.19.1",
+    "@teleporthq/teleport-plugin-jsx-head-config": "^0.19.1",
+    "@teleporthq/teleport-plugin-react-base-component": "^0.19.1",
+    "@teleporthq/teleport-plugin-react-jss": "^0.19.1",
     "@teleporthq/teleport-plugin-react-styled-components": "^0.19.1",
+    "@teleporthq/teleport-shared": "^0.19.1",
     "@teleporthq/teleport-types": "^0.19.1",
+    "@teleporthq/teleport-uidl-resolver": "^0.19.1",
     "@teleporthq/teleport-uidl-validator": "^0.19.4",
-    "dotenv": "^7.0.0",
+    "es-module-lexer": "^0.9.3",
     "esbuild": "^0.13.10",
-    "esbuild-css-modules-plugin": "^2.0.9",
     "express": "^4.17.1",
-    "parcel": "^2.0.0",
-    "uuid": "^8.3.2"
+    "magic-string": "^0.25.7",
+    "morgan": "^1.10.0",
+    "object-hash": "^2.2.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.6",
-    "nodemon": "^2.0.14"
+    "dotenv": "^7.0.0",
+    "nodemon": "^2.0.14",
+    "parcel": "^2.0.0"
   },
   "targets": {
     "main": {
